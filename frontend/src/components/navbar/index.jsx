@@ -9,7 +9,7 @@ export default function Navbar() {
   const menuItems = ["Home", "About", "Projects", "Contact"];
 
   return (
-    <nav className="fixed w-full z-50 bg-gradient-to-r from-[#02053E] via-[#000337]-500/40 to-[#19022D] backdrop-blur-md shadow-lg">
+    <nav className="fixed w-full z-50 bg-gradient-to-r from-purple-900 via-indigo-900 to-[#010001] backdrop-blur-md shadow-lg">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Left Logo */}
         <div className="text-2xl font-bold text-white cursor-pointer">
