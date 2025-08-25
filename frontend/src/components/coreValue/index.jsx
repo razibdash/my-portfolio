@@ -28,31 +28,83 @@ const coreValues = [
 ];
 
 export default function CoreValues() {
+  const borderAnimation = {
+    animate: {
+      borderImageSlice: [0, 100, 0], // will animate stroke effect
+      transition: {
+        repeat: Infinity,
+        duration: 4,
+        ease: "linear",
+      },
+    },
+  };
+
   return (
     <section
       id="values"
-      className="py-20 bg-gradient-to-r from-purple-900 via-indigo-900 to-black text-white"
+      className="relative py-20 bg-gradient-to-r from-purple-900 via-indigo-900 to-black text-white overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        {/* Heading */}
+      {/* Floating Background Blobs */}
+      <div className="absolute inset-0 -z-10">
+        <motion.div
+          animate={{
+            x: [0, 30, -30, 0],
+            y: [0, -20, 20, 0],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
+          className="absolute top-10 left-10 w-64 h-64 bg-purple-600 rounded-full blur-3xl opacity-40"
+        />
+        <motion.div
+          animate={{
+            x: [0, -20, 20, 0],
+            y: [0, 20, -20, 0],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }}
+          className="absolute bottom-0 right-20 w-72 h-72 bg-pink-500 rounded-full blur-3xl opacity-40"
+        />
+        <motion.div
+          animate={{
+            x: [0, 40, -40, 0],
+            y: [0, -30, 30, 0],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{ repeat: Infinity, duration: 18, ease: "easeInOut" }}
+          className="absolute bottom-10 left-1/3 w-80 h-80 bg-indigo-700 rounded-full blur-3xl opacity-30"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
         <h2 className="text-4xl font-bold mb-12">
           My <span className="text-pink-400">Core Values</span>
         </h2>
 
-        {/* Values Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {coreValues.map((value, index) => (
             <motion.div
               key={value.id}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15, duration: 0.6 }}
-              className="p-6 rounded-2xl bg-gradient-to-br from-purple-800/40 to-indigo-800/40 backdrop-blur-lg shadow-lg hover:shadow-pink-500/30 flex flex-col items-center text-center cursor-pointer"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.2, duration: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              className="relative p-6 rounded-2xl bg-gradient-to-br from-purple-800/40 to-indigo-800/40 backdrop-blur-lg shadow-lg flex flex-col items-center text-center cursor-pointer overflow-hidden"
             >
-              {/* Value Title */}
-              <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-              {/* Value Description */}
-              <p className="text-gray-300 text-sm">{value.description}</p>
+              {/* Animated Border */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl border border-pink-500 pointer-events-none"
+                initial={{ rotate: 0 }}
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
+              />
+
+              <h3 className="relative text-xl font-semibold mb-3">
+                {value.title}
+              </h3>
+              <p className="relative text-gray-300 text-sm">
+                {value.description}
+              </p>
             </motion.div>
           ))}
         </div>
