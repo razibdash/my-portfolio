@@ -22,5 +22,29 @@ export const projects = [
     tech: ["Node.js", "LangChain", "Cloudinary", "React"],
     image: "/projects/ai-video.png",
     link: "https://github.com/yourusername/ai-video-generator"
-  }
+  },
+  {
+    id: 3,
+    title: "AI Video Generator",
+    description: "Generates AI videos from text prompts using LangChain and Cloudinary.",
+    tech: ["Node.js", "LangChain", "Cloudinary", "React"],
+    image: "/projects/ai-video.png",
+    link: "https://github.com/yourusername/ai-video-generator"
+  },
+  {
+    id: 3,
+    title: "AI Video Generator",
+    description: "Generates AI videos from text prompts using LangChain and Cloudinary.",
+    tech: ["Node.js", "LangChain", "Cloudinary", "React"],
+    image: "/projects/ai-video.png",
+    link: "https://github.com/yourusername/ai-video-generator"
+  },
+  {
+    id: 3,
+    title: "AI Video Generator",
+    description: "Generates AI videos from text prompts using LangChain and Cloudinary.",
+    tech: ["Node.js", "LangChain", "Cloudinary", "React"],
+    image: "/projects/ai-video.png",
+    link: "https://github.com/yourusername/ai-video-generator"
+  },
 ];
