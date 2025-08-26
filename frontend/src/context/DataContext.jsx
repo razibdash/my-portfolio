@@ -1,0 +1,64 @@
+import { createContext, useContext, useReducer, useEffect } from "react";
+
+// Create context
+const DataContext = createContext();
+
+// Initial state
+const initialState = {
+  skills: [],
+  projects: [],
+  blogs: [],
+};
+
+// Reducer to update state
+function dataReducer(state, action) {
+  switch (action.type) {
+    case "SET_SKILLS":
+      return { ...state, skills: action.payload };
+    case "SET_PROJECTS":
+      return { ...state, projects: action.payload };
+    case "SET_BLOGS":
+      return { ...state, blogs: action.payload };
+    default:
+      return state;
+  }
+}
+
+// Provider component
+export function DataProvider({ children }) {
+  const [state, dispatch] = useReducer(dataReducer, initialState);
+
+  // Example: fetch data from backend on mount
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const skillsRes = await fetch("/api/skills");
+        const skillsData = await skillsRes.json();
+        dispatch({ type: "SET_SKILLS", payload: skillsData });
+
+        const projectsRes = await fetch("/api/projects");
+        const projectsData = await projectsRes.json();
+        dispatch({ type: "SET_PROJECTS", payload: projectsData });
+
+        const blogsRes = await fetch("/api/blogs");
+        const blogsData = await blogsRes.json();
+        dispatch({ type: "SET_BLOGS", payload: blogsData });
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  return (
+    <DataContext.Provider value={{ state, dispatch }}>
+      {children}
+    </DataContext.Provider>
+  );
+}
+
+// Custom hook for easy usage
+export function useData() {
+  return useContext(DataContext);
+}

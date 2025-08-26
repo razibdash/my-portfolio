@@ -1,10 +1,10 @@
 import { useParams, Link } from "react-router-dom";
-import { projects } from "./projectsData";
+import { projects2 } from "./projectsData";
 import { motion } from "framer-motion";
 
 export default function ProjectDetails() {
   const { id } = useParams();
-  const project = projects.find((p) => p.id === parseInt(id));
+  const project = projects2.find((p) => p.id === parseInt(id));
 
   if (!project) {
     return (
