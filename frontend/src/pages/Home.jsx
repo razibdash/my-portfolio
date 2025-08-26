@@ -6,6 +6,7 @@ import CoreValues from "./CoreValue";
 import BlogSection from "./Blogs";
 import Curriculum from "./AcademicCarriculam";
 import MissionVision from "./MissionVision";
+import Contact from "./Contacts";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <BlogSection />
       <Curriculum />
       <MissionVision />
+      <Contact />
     </div>
   );
 };

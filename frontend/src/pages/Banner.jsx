@@ -67,7 +67,7 @@ export default function Banner() {
           className="flex justify-center"
         >
           <img
-            src="https://i.ibb.co.com/sp20bDHw/Avro-4.jpg" // replace with your image
+            src="https://i.ibb.co.com/sp20bDHw/Avro-4.jpg"
             alt="Razib Dash"
             className="w-72 md:w-[500px] rounded-full border-4 border-pink-400 shadow-2xl"
           />
