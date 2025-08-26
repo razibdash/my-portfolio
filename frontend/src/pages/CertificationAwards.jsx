@@ -6,8 +6,8 @@ import { ChevronLeft, ChevronRight, Award } from "lucide-react";
 const certificates = [
   {
     id: 1,
-    title: "React Developer Certification",
-    issuer: "Meta",
+    title: "Java Programming Basics",
+    issuer: "Hakerrank",
     date: "2024-05-10",
     img: "/javaBasic.PNG",
   },
