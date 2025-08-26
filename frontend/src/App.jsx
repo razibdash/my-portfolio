@@ -1,5 +1,6 @@
 import "./App.css";
 import Banner from "./components/banner";
+import BlogSection from "./components/blog";
 import CoreValues from "./components/coreValue";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
@@ -14,6 +15,7 @@ function App() {
       <Skills />
       <Projects />
       <CoreValues />
+      <BlogSection />
       <Footer />
     </>
   );
