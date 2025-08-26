@@ -12,10 +12,11 @@ import {
 import { motion } from "framer-motion";
 import DashboardHome from "./DashboardHome";
 import AddSkill from "./AddSkill";
+import AddCertificate from "./AddCertificate";
 
 // Dummy Components for Pages
 // const Skills = () => <div className="p-6">⚡ Manage Skills</div>;
-const Certificates = () => <div className="p-6">🏆 Manage Certificates</div>;
+// const Certificates = () => <div className="p-6">🏆 Manage Certificates</div>;
 const Blog = () => <div className="p-6">📝 Manage Blog Posts</div>;
 const Projects = () => <div className="p-6">💻 Manage Projects</div>;
 const Messages = () => <div className="p-6">📨 View Messages</div>;
@@ -40,7 +41,7 @@ export default function AdminDashboard() {
       case "skills":
         return <AddSkill />;
       case "certificate":
-        return <Certificates />;
+        return <AddCertificate />;
       case "blog":
         return <Blog />;
       case "project":
