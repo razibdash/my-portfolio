@@ -57,6 +57,14 @@ export default function Projects() {
                     ))}
                   </div>
                 </div>
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href={`/projects/${project.id}`}
+                  className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium shadow-md  transition-all duration-300"
+                >
+                  Read More →
+                </motion.a>
               </motion.d>
             ))}
           </AnimatePresence>

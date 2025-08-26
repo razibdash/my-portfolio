@@ -7,6 +7,8 @@ import About from "../pages/About";
 import Contact from "../pages/Contacts";
 import ProjectDetails from "../pages/ProjectDetails";
 import BlogDetails from "../pages/BlogDetails";
+import Curriculum from "../pages/AcademicCarriculam";
+import MissionVision from "../pages/MissionVision";
 export default function AppRouter() {
   return (
     <Routes>
@@ -16,6 +18,8 @@ export default function AppRouter() {
       <Route path="/about" element={<About />} />
       <Route path="/projects" element={<AllProject />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/curriculum" element={<Curriculum />} />
+      <Route path="/mission-vision" element={<MissionVision />} />
       <Route path="/projects/:id" element={<ProjectDetails />} />
       <Route path="/blog/:id" element={<BlogDetails />} />
     </Routes>
