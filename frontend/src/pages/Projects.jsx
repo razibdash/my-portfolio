@@ -20,7 +20,7 @@ export default function Projects() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <AnimatePresence>
             {displayedProjects.map((project, index) => (
-              <motion.div
+              <motion.d
                 key={project.id}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export default function Projects() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </motion.d>
             ))}
           </AnimatePresence>
         </div>
