@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import blogImage from "../../../public/download.jpeg";
 
 const blogs = [
   {
     id: 1,
-    image: blogImage,
+    image: "/download.jpeg",
     title: "Best Practices for React Development",
     author: "Razib Dash",
     date: "2024-09-25",
@@ -13,7 +12,7 @@ const blogs = [
   },
   {
     id: 2,
-    image: blogImage,
+    image: "/download.jpeg",
     title: "Mastering TailwindCSS for Modern UI",
     author: "Razib Dash",
     date: "2024-08-15",
@@ -22,7 +21,7 @@ const blogs = [
   },
   {
     id: 3,
-    image: blogImage,
+    image: "/download.jpeg",
     title: "The Future of AI in Web Development",
     author: "Razib Dash",
     date: "2024-07-10",
@@ -31,7 +30,7 @@ const blogs = [
   },
   {
     id: 4,
-    image: blogImage,
+    image: "/download.jpeg",
     title: "The Future of AI in Web Development",
     author: "Razib Dash",
     date: "2024-07-10",

@@ -2,18 +2,21 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const menuItems = ["Home", "About", "Projects", "Contact"];
+  const menuItems = ["Home", "Skills", "Blog", "About", "Projects", "Contact"];
 
   return (
     <nav className="fixed w-full z-50 bg-gradient-to-r from-purple-900 via-indigo-900 to-[#010001] backdrop-blur-md shadow-lg">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Left Logo */}
         <div className="text-2xl font-bold text-white cursor-pointer">
-          Razib<span className="text-pink-400">.</span>
+          <Link to="/">
+            Razib<span className="text-pink-400">.</span>
+          </Link>
         </div>
 
         {/* Middle Menu (Desktop) */}
@@ -23,7 +26,11 @@ export default function Navbar() {
               key={i}
               className="cursor-pointer hover:text-pink-300 transition duration-300"
             >
-              {item}
+              {item === "Home" ? (
+                <Link to="/">{item}</Link>
+              ) : (
+                <Link to={`/${item.toLowerCase()}`}>{item}</Link>
+              )}
             </li>
           ))}
         </ul>

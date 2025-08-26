@@ -1,24 +1,22 @@
-import "./App.css";
-import Banner from "./components/banner";
-import BlogSection from "./components/blog";
-import CoreValues from "./components/coreValue";
-import Footer from "./components/footer";
-import Navbar from "./components/navbar";
-import Projects from "./components/project";
-import Skills from "./components/skills";
-
-function App() {
+import { BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./components/navbar/index.jsx";
+import AppRouter from "./router";
+import Footer from "./components/footer/index.jsx";
+export default function App() {
   return (
-    <>
-      <Navbar />
-      <Banner />
-      <Skills />
-      <Projects />
-      <CoreValues />
-      <BlogSection />
-      <Footer />
-    </>
+    <Router>
+      <div className="min-h-screen flex flex-col bg-black text-white">
+        {/* Navbar */}
+        <Navbar />
+
+        {/* Routing */}
+        <main className="flex-1">
+          <AppRouter />
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    </Router>
   );
 }
-
-export default App;
