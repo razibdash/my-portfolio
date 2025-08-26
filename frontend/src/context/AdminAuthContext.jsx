@@ -5,7 +5,7 @@ const AdminAuthContext = createContext();
 export const useAdminAuth = () => useContext(AdminAuthContext);
 
 export const AdminAuthProvider = ({ children }) => {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   const login = () => setIsAdmin(true);
   const logout = () => setIsAdmin(false);

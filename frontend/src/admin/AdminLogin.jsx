@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useAdminAuth } from "../context/AdminAuthContext";
 
-export default function AdminLogin({ onLogin }) {
+export default function AdminLogin() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { isAdmin, login } = useAdminAuth();
+  console.log(isAdmin);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -12,8 +17,12 @@ export default function AdminLogin({ onLogin }) {
     e.preventDefault();
     // Simple mock authentication
     if (formData.username === "admin" && formData.password === "password123") {
-      setError("");
-      onLogin(); // Call parent function to set admin auth
+      if (!isAdmin) {
+        login();
+      } else {
+        navigate("/admin");
+      }
+      setError(""); // Clear error message
     } else {
       setError("Invalid username or password");
     }
