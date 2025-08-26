@@ -2,10 +2,13 @@ const dotenv=require('dotenv')
 const express = require("express");
 const cors= require("cors");
 const bodyParser = require("body-parser");
+const dbConnect = require('./config/db');
 const cloudinary = require("cloudinary").v2;
 const app = express();
 
 dotenv.config()
+//database
+dbConnect();
 
 //Port
 const PORT = process.env.PORT || 5000;
