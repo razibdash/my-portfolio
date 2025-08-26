@@ -1,10 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { projects } from "./projectsData";
-import { Link } from "react-router-dom";
+import { projects } from "../projectsData";
 
 export default function Projects() {
-  const displayedProjects = projects.slice(0, 3); // Show only 3 projects
-
   return (
     <section
       id="projects"
@@ -19,7 +16,7 @@ export default function Projects() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <AnimatePresence>
-            {displayedProjects.map((project, index) => (
+            {projects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 40 }}
@@ -61,18 +58,6 @@ export default function Projects() {
             ))}
           </AnimatePresence>
         </div>
-
-        {/* See More Button */}
-        {projects.length > displayedProjects.length && (
-          <div className="mt-10">
-            <Link
-              to="/projects"
-              className="inline-block px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium shadow-lg hover:scale-105 transition"
-            >
-              See More Projects
-            </Link>
-          </div>
-        )}
       </div>
     </section>
   );

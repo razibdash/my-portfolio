@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import AllSkills from "../pages/AllSkills/AllSkill";
-import BlogSection from "../pages/Blogs";
-import Projects from "../pages/Projects";
+import AllBlog from "../pages/AllBlog/AllBlog";
+import AllProject from "../pages/AllProjects/AllProject";
 import About from "../pages/About";
 import Contact from "../pages/Contacts";
 
@@ -11,9 +11,9 @@ export default function AppRouter() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/skills" element={<AllSkills />} />
-      <Route path="/blog" element={<BlogSection />} />
+      <Route path="/blog" element={<AllBlog />} />
       <Route path="/about" element={<About />} />
-      <Route path="/projects" element={<Projects />} />
+      <Route path="/projects" element={<AllProject />} />
       <Route path="/contact" element={<Contact />} />
     </Routes>
   );

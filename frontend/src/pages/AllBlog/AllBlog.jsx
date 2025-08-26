@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 
 const blogs = [
   {
@@ -41,7 +40,6 @@ const blogs = [
 ];
 
 export default function BlogSection() {
-  const displayedBlogs = blogs.slice(0, 3);
   return (
     <section
       id="blogs"
@@ -76,7 +74,7 @@ export default function BlogSection() {
 
         {/* Blog Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {displayedBlogs.map((blog, index) => (
+          {blogs.map((blog, index) => (
             <motion.div
               key={blog.id}
               initial={{ opacity: 0, y: 40 }}
@@ -129,18 +127,6 @@ export default function BlogSection() {
             </motion.div>
           ))}
         </div>
-
-        {/* See More Button */}
-        {blogs.length > displayedBlogs.length && (
-          <div className="mt-10">
-            <Link
-              to="/blog"
-              className="inline-block px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium shadow-lg hover:scale-105 transition"
-            >
-              See More Blogs
-            </Link>
-          </div>
-        )}
       </div>
     </section>
   );
