@@ -6,6 +6,7 @@ import AllProject from "../pages/AllProjects/AllProject";
 import About from "../pages/About";
 import Contact from "../pages/Contacts";
 import ProjectDetails from "../pages/ProjectDetails";
+import BlogDetails from "../pages/BlogDetails";
 export default function AppRouter() {
   return (
     <Routes>
@@ -16,6 +17,7 @@ export default function AppRouter() {
       <Route path="/projects" element={<AllProject />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/projects/:id" element={<ProjectDetails />} />
+      <Route path="/blog/:id" element={<BlogDetails />} />
     </Routes>
   );
 }
