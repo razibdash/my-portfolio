@@ -10,6 +10,8 @@ import BlogDetails from "../pages/BlogDetails";
 import Curriculum from "../pages/AcademicCarriculam";
 import MissionVision from "../pages/MissionVision";
 import AdminDashboard from "../admin/AdminDashboard";
+import AdminLogin from "../admin/AdminLogin";
+import ProtectedRoute from "./ProtectedRoute";
 export default function AppRouter() {
   return (
     <Routes>
@@ -23,7 +25,16 @@ export default function AppRouter() {
       <Route path="/mission-vision" element={<MissionVision />} />
       <Route path="/projects/:id" element={<ProjectDetails />} />
       <Route path="/blog/:id" element={<BlogDetails />} />
-      <Route path="/admin" element={<AdminDashboard />} />
+      {/* Admin Routes */}
+      <Route path="/admin-login" element={<AdminLogin />} />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

@@ -15,20 +15,25 @@ import AddSkill from "./AddSkill";
 import AddCertificate from "./AddCertificate";
 import AddProject from "./AddProject";
 import AddBlog from "./AddBlog";
+import ShowMessages from "./ShowMessages";
 
 // Dummy Components for Pages
 // const Skills = () => <div className="p-6">⚡ Manage Skills</div>;
 // const Certificates = () => <div className="p-6">🏆 Manage Certificates</div>;
 // const Blog = () => <div className="p-6">📝 Manage Blog Posts</div>;
 // const Projects = () => <div className="p-6">💻 Manage Projects</div>;
-const Messages = () => <div className="p-6">📨 View Messages</div>;
+// const Messages = () => <div className="p-6">📨 View Messages</div>;
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const menuItems = [
-    { id: "dashboard", label: "Dashboard", icon: <BookOpen size={20} /> },
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      icon: <LayoutDashboard size={20} />,
+    },
     { id: "skills", label: "Skills", icon: <BookOpen size={20} /> },
     { id: "certificate", label: "Certificates", icon: <Award size={20} /> },
     { id: "blog", label: "Blog", icon: <PenSquare size={20} /> },
@@ -49,9 +54,9 @@ export default function AdminDashboard() {
       case "project":
         return <AddProject />;
       case "message":
-        return <Messages />;
+        return <ShowMessages />;
       default:
-        return <Skills />;
+        return <DashboardHome />;
     }
   };
 

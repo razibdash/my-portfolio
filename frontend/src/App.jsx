@@ -3,6 +3,7 @@ import Navbar from "./components/navbar/index.jsx";
 import AppRouter from "./router";
 import Footer from "./components/footer/index.jsx";
 import { DataProvider } from "./context/DataContext";
+import { AdminAuthProvider } from "./context/AdminAuthContext.jsx";
 
 function Layout() {
   const location = useLocation();
@@ -26,10 +27,12 @@ function Layout() {
 
 export default function App() {
   return (
-    <DataProvider>
-      <Router>
-        <Layout />
-      </Router>
-    </DataProvider>
+    <AdminAuthProvider>
+      <DataProvider>
+        <Router>
+          <Layout />
+        </Router>
+      </DataProvider>
+    </AdminAuthProvider>
   );
 }
