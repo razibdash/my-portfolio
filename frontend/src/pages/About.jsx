@@ -2,10 +2,40 @@
 import { motion } from "framer-motion";
 
 export default function About() {
+  const about = [
+    {
+      id: 1,
+      title: "My Programming Journey",
+      content:
+        "I started my programming journey with curiosity about how software works, beginning with C and C++. Over time, I explored Java, and eventually found my passion in web development with JavaScript, React, and the MERN stack.",
+    },
+
+    {
+      id: 2,
+      title: "The Work I Enjoy",
+      content:
+        "I love building user-friendly web apps with clean design and interactive features. Problem-solving excites me, and I enjoy working on real-world projects where creativity meets logic.",
+    },
+
+    {
+      id: 3,
+      title: "Hobbies & Interests",
+      content:
+        "Outside programming, I enjoy reading tech blogs and exploring creative design. These hobbies keep me energized and bring fresh ideas into my coding work.",
+    },
+
+    {
+      id: 4,
+      title: "Future Aspirations",
+      content:
+        "I aim to deepen my expertise in web development and explore emerging technologies like AI and blockchain. My goal is to create impactful solutions that enhance user experiences.",
+    },
+  ];
+
   return (
     <section
       id="about"
-      className="relative mt-10 py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white overflow-hidden"
+      className="relative mt-10 py-20 bg-gradient-to-r px-5 from-gray-900 via-black to-gray-900 text-white overflow-hidden"
     >
       {/* Floating Gradient Blobs (Background) */}
       <motion.div
@@ -94,6 +124,30 @@ export default function About() {
             Download CV
           </motion.a>
         </motion.div>
+      </div>
+      <div className="relative mt-10 ">
+        <div className="absolute lg:left-1/2 left-0 transform -tracking-x-1/2 lg:-translate-x-0 w-1 h-full bg-gradient-to-r from-pink-500 to-purple-600 "></div>
+        {about.map((item) => (
+          <div
+            key={item.id}
+            className={`flex flex-col lg:flex-row items-center  pr-3 lg:pr-0 mb-12 ${
+              item.id % 2 === 0 ? "lg:justify-end" : "lg:justify-start"
+            } `}
+          >
+            <div className="absolute lg:left-1/2 left-0 transform -translate-x-1/2 bg-gray-400 border-2 border-primary w-5 h-5  rounded-full flex justify-center items-center shadow-2xl shadow-secondary z-10"></div>
+
+            <div
+              className={`w-full lg:max-w-lg px-8 py-12 lg:py-16  border border-pink-500  rounded-bl-4xl  rounded-tr-4xl shadow-md shadow-primary bg-gray-900  backdrop:blur-lg ${
+                item.id % 2 === 0
+                  ? "lg:ml-0, lg:text-left"
+                  : "lg:mr-0,lg:text-right"
+              } lg:ml-55 lg:mr-55 ml-8 transform transition-transform duration-300 hover:scale-105`}
+            >
+              <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
+              <p className="text-gray-500 text-sm">{item.content}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
