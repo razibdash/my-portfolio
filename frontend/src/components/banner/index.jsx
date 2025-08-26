@@ -9,7 +9,7 @@ export default function Banner() {
       <div className="absolute inset-0 -z-10">
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.2, 1] }}
+          animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.5, 1] }}
           transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
           className="absolute top-20 left-20 w-72 h-72 bg-purple-500 rounded-full blur-3xl opacity-50"
         />
@@ -61,15 +61,15 @@ export default function Banner() {
 
         {/* Right Image */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: [0, -20, 0], opacity: 1 }}
-          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+          initial={{ y: 50, opacity: 5 }}
+          animate={{ y: [1, -20, 1], opacity: 1 }}
+          transition={{ repeat: Infinity, duration: 4 }}
           className="flex justify-center"
         >
           <img
             src="https://i.ibb.co.com/sp20bDHw/Avro-4.jpg" // replace with your image
             alt="Razib Dash"
-            className="w-72 md:w-96 rounded-full border-4 border-pink-400 shadow-2xl"
+            className="w-72 md:w-[500px] rounded-full border-4 border-pink-400 shadow-2xl"
           />
         </motion.div>
       </div>

@@ -93,10 +93,10 @@ export default function CoreValues() {
             >
               {/* Animated Border */}
               <motion.div
-                className="absolute inset-0 rounded-2xl border border-pink-500 pointer-events-none"
+                className="absolute inset-0 rounded-2xl border-2 shadow-lg border-purple-800/40 pointer-events-none"
                 initial={{ rotate: 0 }}
                 animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
+                transition={{ repeat: Infinity, duration: 9, ease: "linear" }}
               />
 
               <h3 className="relative text-xl font-semibold mb-3">

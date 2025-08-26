@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { skills } from "./skillsData";
 
 export default function Skills() {
-  console.log(skills);
   const categories = ["All", "Frontend", "Backend", "AI/ML", "Tools"];
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -13,7 +12,7 @@ export default function Skills() {
       : skills.filter((skill) => skill.category === selectedCategory);
 
   // Show only first 6 skills for preview
-  const displayedSkills = filteredSkills.slice(0, 6);
+  const displayedSkills = filteredSkills.slice(0, 8);
 
   return (
     <section
@@ -44,7 +43,7 @@ export default function Skills() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-8">
           <AnimatePresence>
             {displayedSkills.map((skill, index) => (
               <motion.div
@@ -52,10 +51,20 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 40 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                transition={{ delay: index * 0.1, duration: 0.9 }}
                 whileHover={{ scale: 1.1, rotate: 3 }}
-                className="p-6 rounded-2xl bg-gradient-to-br from-purple-800/40 to-indigo-800/40 backdrop-blur-lg shadow-lg flex flex-col items-center space-y-3 cursor-pointer hover:shadow-pink-500/30"
+                className="relative p-6 rounded-2xl bg-gradient-to-br from-purple-800/40 to-indigo-800/40 backdrop-blur-lg shadow-lg flex flex-col items-center text-center cursor-pointer overflow-hidden"
               >
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border-b shadow-lg border-purple-900 pointer-events-none "
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 8,
+                    ease: "linear",
+                  }}
+                />
                 {/* Skill Logo */}
                 <img
                   src={skill.logo}
@@ -68,6 +77,7 @@ export default function Skills() {
             ))}
           </AnimatePresence>
         </div>
+        {/* Animated Border */}
 
         {/* See More Button */}
         {filteredSkills.length > displayedSkills.length && (
