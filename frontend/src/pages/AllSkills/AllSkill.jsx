@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { skills } from "./skillsData";
-import { Link } from "react-router-dom";
+import { skills } from "../skillsData";
 
 export default function Skills() {
   const categories = ["All", "Frontend", "Backend", "AI/ML", "Tools"];
@@ -11,9 +10,6 @@ export default function Skills() {
     selectedCategory === "All"
       ? skills
       : skills.filter((skill) => skill.category === selectedCategory);
-
-  // Show only first 6 skills for preview
-  const displayedSkills = filteredSkills.slice(0, 8);
 
   return (
     <section
@@ -46,7 +42,7 @@ export default function Skills() {
         {/* Skills Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-8">
           <AnimatePresence>
-            {displayedSkills.map((skill, index) => (
+            {filteredSkills.map((skill, index) => (
               <motion.div
                 key={skill.id}
                 initial={{ opacity: 0, y: 40 }}
@@ -79,18 +75,6 @@ export default function Skills() {
           </AnimatePresence>
         </div>
         {/* Animated Border */}
-
-        {/* See More Button */}
-        {filteredSkills.length > displayedSkills.length && (
-          <div className="mt-10">
-            <Link
-              to="/skills" // Replace with your full skills page route
-              className="inline-block px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium shadow-lg hover:scale-105 transition"
-            >
-              See More Skills
-            </Link>
-          </div>
-        )}
       </div>
     </section>
   );
