@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { skills } from "../skillsData";
-
+import { DataContext } from "../../context/DataContext";
 export default function Skills() {
+  const { state } = useContext(DataContext);
+  const { skills } = state;
+
   const categories = ["All", "Frontend", "Backend", "AI/ML", "Tools"];
   const [selectedCategory, setSelectedCategory] = useState("All");
 

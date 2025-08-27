@@ -93,6 +93,7 @@ export default function AddSkill() {
           className="p-3 rounded-lg flex-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
         >
           <option value="">Select Category</option>
+          <option value="All">All</option>
           <option value="Frontend">Frontend</option>
           <option value="Backend">Backend</option>
           <option value="AI/ML">AI/ML</option>

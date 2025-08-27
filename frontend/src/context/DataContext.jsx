@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 
 // Create context
-const DataContext = createContext();
+export const DataContext = createContext();
 
 // Initial state
 const initialState = {
@@ -60,7 +60,7 @@ export function DataProvider({ children }) {
   );
 }
 
-// Custom hook for easy usage
-export function useData() {
-  return useContext(DataContext);
-}
+// // Custom hook for easy usage
+// export function useData() {
+//   return useContext(DataContext);
+// }
