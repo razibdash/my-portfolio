@@ -6,6 +6,7 @@ const dbConnect = require('./config/db');
 const adminRoutes =require('./routes/adminRoutes')
 const skillRoutes=require('./routes/skillRoutes')
 const certificateRoutes=require('./routes/certificatesRoutes')
+const blogRoutes=require('./routes/blogRoutes')
 const cloudinary = require("cloudinary").v2;
 const app = express();
 
@@ -33,6 +34,13 @@ app.use(bodyParser.json());
 app.use("/api/admin", adminRoutes);
 app.use('/api/skills',skillRoutes);
 app.use('/api/certificates',certificateRoutes);
+app.use('/api/blogs',blogRoutes);
+
+//default error handler
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ message: "Internal Server Error" });
+});
 
 //app listening
 app.listen(PORT, () => {
