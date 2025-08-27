@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const dbConnect = require('./config/db');
 const adminRoutes =require('./routes/adminRoutes')
 const skillRoutes=require('./routes/skillRoutes')
+const certificateRoutes=require('./routes/certificatesRoutes')
 const cloudinary = require("cloudinary").v2;
 const app = express();
 
@@ -30,7 +31,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Routes
 app.use("/api/admin", adminRoutes);
-app.use('/api/skills',skillRoutes)
+app.use('/api/skills',skillRoutes);
+app.use('/api/certificates',certificateRoutes);
 
 //app listening
 app.listen(PORT, () => {
