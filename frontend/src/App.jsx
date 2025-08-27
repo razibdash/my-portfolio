@@ -5,13 +5,15 @@ import Footer from "./components/footer/index.jsx";
 import { DataProvider } from "./context/DataContext";
 import { AdminAuthProvider } from "./context/AdminAuthContext.jsx";
 import { SkillProvider } from "./context/SkillContext.jsx";
-
+import { BlogProvider } from "./context/BlogContext.jsx";
+import { Toaster } from "react-hot-toast";
 function Layout() {
   const location = useLocation();
   const hideLayout = location.pathname.startsWith("/admin"); // hide navbar/footer for admin
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
+      <Toaster position="top-right" reverseOrder={false} />
       {/* Navbar */}
       {!hideLayout && <Navbar />}
 
@@ -31,9 +33,11 @@ export default function App() {
     <AdminAuthProvider>
       <DataProvider>
         <SkillProvider>
-          <Router>
-            <Layout />
-          </Router>
+          <BlogProvider>
+            <Router>
+              <Layout />
+            </Router>
+          </BlogProvider>
         </SkillProvider>
       </DataProvider>
     </AdminAuthProvider>

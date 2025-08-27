@@ -1,19 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-const initialBlogs = [
-  {
-    id: 1,
-    image: "/download.jpeg",
-    title: "Best Practices for React Development",
-    author: "Razib Dash",
-    date: "2024-09-25",
-    description: "React is an essential",
-  },
-];
-
+import { useBlog } from "../hook/allData";
+import toast from "react-hot-toast";
 export default function AddBlog() {
-  const [blogs, setBlogs] = useState(initialBlogs);
+  const {
+    blogs,
+    fetchBlogs,
+    createBlog,
+    updateBlog,
+    deleteBlog,
+    loading,
+    error,
+  } = useBlog();
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
   const [formData, setFormData] = useState({
     image: "",
     title: "",
@@ -26,8 +27,9 @@ export default function AddBlog() {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleAddOrEdit = (e) => {
+  const handleAddOrEdit = async (e) => {
     e.preventDefault();
+
     if (
       !formData.image ||
       !formData.title ||
@@ -37,15 +39,25 @@ export default function AddBlog() {
     )
       return;
 
-    if (editId) {
-      setBlogs(
-        blogs.map((blog) =>
-          blog.id === editId ? { id: editId, ...formData } : blog
-        )
-      );
-      setEditId(null);
-    } else {
-      setBlogs([...blogs, { id: Date.now(), ...formData }]);
+    try {
+      if (editId) {
+        await updateBlog(editId, formData);
+        toast.success("Blog updated successfully ✅");
+        setEditId(null);
+      } else {
+        await createBlog(formData);
+        toast.success("Blog created successfully 🎉");
+      }
+
+      setFormData({
+        image: "",
+        title: "",
+        author: "",
+        date: "",
+        description: "",
+      });
+    } catch (err) {
+      toast.error("Something went wrong ❌");
     }
 
     setFormData({
@@ -65,12 +77,17 @@ export default function AddBlog() {
       date: blog.date,
       description: blog.description,
     });
-    setEditId(blog.id);
+    setEditId(blog._id); // 👈 using DB _id now
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this blog?")) {
-      setBlogs(blogs.filter((blog) => blog.id !== id));
+      try {
+        await deleteBlog(id);
+        toast.success("Blog deleted successfully 🗑️");
+      } catch {
+        toast.error("Failed to delete blog ❌");
+      }
     }
   };
 
@@ -158,7 +175,7 @@ export default function AddBlog() {
           <tbody className="bg-white divide-y divide-gray-200">
             {blogs.map((blog) => (
               <motion.tr
-                key={blog.id}
+                key={blog._id}
                 whileHover={{ scale: 1.02 }}
                 className="cursor-pointer transition"
               >
@@ -183,7 +200,7 @@ export default function AddBlog() {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(blog.id)}
+                    onClick={() => handleDelete(blog._id)}
                     className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
                   >
                     Delete

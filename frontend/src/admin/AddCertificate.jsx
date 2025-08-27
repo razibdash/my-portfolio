@@ -4,20 +4,10 @@ import axios from "axios";
 import { useContext } from "react";
 import { AdminAuthContext } from "../context/AdminAuthContext";
 import { useEffect } from "react";
-
-const initialCertificates = [
-  {
-    id: 1,
-    title: "Java Programming Basics",
-    issuer: "Hackerrank",
-    date: "2024-05-10",
-    img: "/javaBasic.PNG",
-  },
-];
+import toast from "react-hot-toast";
 
 export default function AddCertificate() {
   const { admin } = useContext(AdminAuthContext); // token comes from context
-  console.log(admin);
   const [certificates, setCertificates] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
@@ -39,9 +29,10 @@ export default function AddCertificate() {
         "http://localhost:5000/api/certificates/certificate/"
       );
       setCertificates(res.data.certificates);
-      console.log(res.data.certificates);
+      toast.success("Certificates fetched successfully 🎉");
     } catch (err) {
       console.error("Failed to fetch certificates:", err);
+      toast.error("Failed to fetch certificates ❌");
     }
   };
 
@@ -67,6 +58,7 @@ export default function AddCertificate() {
             },
           }
         );
+        toast.success("Certificate updated successfully ✅");
       } else {
         // Add
         await axios.post(
@@ -78,12 +70,14 @@ export default function AddCertificate() {
             },
           }
         );
+        toast.success("Certificate created successfully 🎉");
       }
       fetchCertificates(); // refresh list
       setFormData({ title: "", issuer: "", date: "", img: "" });
       setEditId(null);
     } catch (err) {
       console.error("Error saving certificate:", err);
+      toast.error("Failed to save certificate ❌");
     }
   };
 
@@ -110,9 +104,11 @@ export default function AddCertificate() {
             },
           }
         );
+        toast.success("Certificate deleted successfully 🗑️");
         fetchCertificates();
       } catch (err) {
         console.error("Error deleting certificate:", err);
+        toast.error("Failed to delete certificate ❌");
       }
     }
   };

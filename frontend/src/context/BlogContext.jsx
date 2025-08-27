@@ -107,7 +107,7 @@ export function BlogProvider({ children }) {
     dispatch({ type: "SET_LOADING" });
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/blogs/blogs/${id}`,
+        `http://localhost:5000/api/blogs/blog/${id}`,
         blogData,
         getAuthHeader()
       );

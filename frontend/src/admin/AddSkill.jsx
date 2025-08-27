@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { SkillContext } from "../context/SkillContext";
 import { useContext } from "react";
+import toast from "react-hot-toast";
 export default function AddSkill() {
   const { skills, deleteSkill, addSkill, updateSkill } =
     useContext(SkillContext);
@@ -24,12 +25,13 @@ export default function AddSkill() {
       // ✅ Update existing skill via context
       updateSkill(editId, formData);
       setEditId(null);
+      toast.success("Skill updated successfully ✅");
     } else {
       // ✅ Add new skill via context
       addSkill(formData);
+      toast.success("Skill added successfully 🎉");
     }
 
-    // Reset form
     setFormData({ name: "", logo: "", category: "" });
   };
 
@@ -42,10 +44,15 @@ export default function AddSkill() {
     setEditId(skill._id);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this skill?")) {
       // ✅ Call context delete function (this also calls backend API)
-      deleteSkill(id);
+      try {
+        await deleteSkill(id);
+        toast.success("Skill deleted successfully 🗑️");
+      } catch {
+        toast.error("Failed to delete skill ❌");
+      }
     }
   };
 

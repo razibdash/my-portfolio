@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { AdminAuthContext } from "../context/AdminAuthContext";
 import { useContext } from "react";
-
+import toast from "react-hot-toast";
 export default function AdminLogin() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
@@ -19,9 +19,10 @@ export default function AdminLogin() {
 
     if (res.success) {
       navigate("/admin"); // redirect to admin dashboard
+      toast.success("Login successful 🎉");
     } else {
       navigate("/admin-login");
-      alert(res.message); // show error
+      toast.error(res.message); // show error
     }
   };
 
