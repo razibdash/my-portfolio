@@ -10,7 +10,7 @@ export const AdminAuthProvider = ({ children }) => {
   // ✅ Restore admin from localStorage on reload
   useEffect(() => {
     const savedAdmin = localStorage.getItem("admin");
-    console.log("Restoring admin from localStorage:", savedAdmin);
+
     if (savedAdmin) {
       setAdmin(JSON.parse(savedAdmin)); // parse stored object
     }
