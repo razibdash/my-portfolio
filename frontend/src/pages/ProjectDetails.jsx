@@ -72,13 +72,13 @@ export default function ProjectDetails() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="flex gap-6 mt-8"
+          className="flex flex-wrap gap-6 mt-8"
         >
           <a
             href={project.liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-pink-500/50 transition"
+            className="px-5 py-2  lg:px-6 lg:py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-pink-500/50 transition"
           >
             Live Demo
           </a>
@@ -86,7 +86,7 @@ export default function ProjectDetails() {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-gray-800/70 text-white rounded-xl shadow-lg hover:shadow-gray-500/50 transition"
+            className="px-5 py-2 lg:px-6 lg:py-3 bg-gray-800/70 text-white rounded-xl shadow-lg hover:shadow-gray-500/50 transition"
           >
             GitHub
           </a>
