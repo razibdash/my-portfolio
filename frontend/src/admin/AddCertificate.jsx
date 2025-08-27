@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { useContext } from "react";
+import { AdminAuthContext } from "../context/AdminAuthContext";
+import { useEffect } from "react";
 
 const initialCertificates = [
   {
@@ -12,7 +16,9 @@ const initialCertificates = [
 ];
 
 export default function AddCertificate() {
-  const [certificates, setCertificates] = useState(initialCertificates);
+  const { admin } = useContext(AdminAuthContext); // token comes from context
+  console.log(admin);
+  const [certificates, setCertificates] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     issuer: "",
@@ -21,28 +27,67 @@ export default function AddCertificate() {
   });
   const [editId, setEditId] = useState(null);
 
+  // Fetch certificates on mount
+  useEffect(() => {
+    fetchCertificates();
+  }, []);
+
+  // 🔹 Fetch All Certificates
+  const fetchCertificates = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/api/certificates/certificate/"
+      );
+      setCertificates(res.data.certificates);
+      console.log(res.data.certificates);
+    } catch (err) {
+      console.error("Failed to fetch certificates:", err);
+    }
+  };
+
+  // 🔹 Handle form input
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleAddOrEdit = (e) => {
+  // 🔹 Add / Update certificate
+  const handleAddOrEdit = async (e) => {
     e.preventDefault();
     if (!formData.title || !formData.issuer || !formData.date || !formData.img)
       return;
 
-    if (editId) {
-      setCertificates(
-        certificates.map((cert) =>
-          cert.id === editId ? { id: editId, ...formData } : cert
-        )
-      );
+    try {
+      if (editId) {
+        // Update
+        await axios.put(
+          `http://localhost:5000/api/certificates/certificate/${editId}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${admin?.token}`,
+            },
+          }
+        );
+      } else {
+        // Add
+        await axios.post(
+          "http://localhost:5000/api/certificates/certificate/",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${admin?.token}`,
+            },
+          }
+        );
+      }
+      fetchCertificates(); // refresh list
+      setFormData({ title: "", issuer: "", date: "", img: "" });
       setEditId(null);
-    } else {
-      setCertificates([...certificates, { id: Date.now(), ...formData }]);
+    } catch (err) {
+      console.error("Error saving certificate:", err);
     }
-
-    setFormData({ title: "", issuer: "", date: "", img: "" });
   };
 
+  // 🔹 Edit certificate
   const handleEdit = (cert) => {
     setFormData({
       title: cert.title,
@@ -50,12 +95,25 @@ export default function AddCertificate() {
       date: cert.date,
       img: cert.img,
     });
-    setEditId(cert.id);
+    setEditId(cert._id); // use backend _id
   };
 
-  const handleDelete = (id) => {
+  // 🔹 Delete certificate
+  const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this certificate?")) {
-      setCertificates(certificates.filter((cert) => cert.id !== id));
+      try {
+        await axios.delete(
+          `http://localhost:5000/api/certificates/certificate/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${admin?.token}`,
+            },
+          }
+        );
+        fetchCertificates();
+      } catch (err) {
+        console.error("Error deleting certificate:", err);
+      }
     }
   };
 
@@ -134,7 +192,7 @@ export default function AddCertificate() {
           <tbody className="bg-white divide-y divide-gray-200">
             {certificates.map((cert) => (
               <motion.tr
-                key={cert.id}
+                key={cert._id}
                 whileHover={{ scale: 1.02 }}
                 className="cursor-pointer transition"
               >
@@ -158,7 +216,7 @@ export default function AddCertificate() {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(cert.id)}
+                    onClick={() => handleDelete(cert._id)}
                     className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
                   >
                     Delete

@@ -10,6 +10,7 @@ export const AdminAuthProvider = ({ children }) => {
   // ✅ Restore admin from localStorage on reload
   useEffect(() => {
     const savedAdmin = localStorage.getItem("admin");
+    console.log("Restoring admin from localStorage:", savedAdmin);
     if (savedAdmin) {
       setAdmin(JSON.parse(savedAdmin)); // parse stored object
     }
@@ -23,13 +24,10 @@ export const AdminAuthProvider = ({ children }) => {
         email,
         password,
       });
-
       const { token } = res.data;
-      const adminObj = { token }; // can add email or name if returned from backend
-
+      const adminObj = { token }; // can add email or name if returned from backen
       // Save to localStorage (key name must match the one used in useEffect)
       localStorage.setItem("admin", JSON.stringify(adminObj));
-
       setAdmin(adminObj);
       return { success: true };
     } catch (err) {

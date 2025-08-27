@@ -2,18 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { SkillContext } from "../context/SkillContext";
 import { useContext } from "react";
-
-const initialSkills = [
-  {
-    id: 1,
-    name: "React.js",
-    logo: "/react-svgrepo-com_wxqf3m.svg",
-    category: "Frontend",
-  },
-  { id: 2, name: "Node.js", logo: "/nodejs.svg", category: "Backend" },
-  { id: 3, name: "Python", logo: "/python.svg", category: "AI/ML" },
-];
-
 export default function AddSkill() {
   const { skills, deleteSkill, addSkill, updateSkill } =
     useContext(SkillContext);

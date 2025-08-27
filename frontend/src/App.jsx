@@ -29,13 +29,13 @@ function Layout() {
 export default function App() {
   return (
     <AdminAuthProvider>
-      <SkillProvider>
-        <DataProvider>
+      <DataProvider>
+        <SkillProvider>
           <Router>
             <Layout />
           </Router>
-        </DataProvider>
-      </SkillProvider>
+        </SkillProvider>
+      </DataProvider>
     </AdminAuthProvider>
   );
 }

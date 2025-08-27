@@ -8,7 +8,6 @@ export const SkillProvider = ({ children }) => {
   const [skills, setSkills] = useState([]);
   const { admin } = useContext(AdminAuthContext); // ✅ get token from auth context
   const token = admin?.token; // assuming admin object has a token property
-  console.log(token);
   // Fetch Skills
   const fetchSkills = async () => {
     try {
