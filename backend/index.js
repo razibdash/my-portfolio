@@ -7,6 +7,7 @@ const adminRoutes =require('./routes/adminRoutes')
 const skillRoutes=require('./routes/skillRoutes')
 const certificateRoutes=require('./routes/certificatesRoutes')
 const blogRoutes=require('./routes/blogRoutes')
+const projectRoutes=require('./routes/projectRoutes')
 const cloudinary = require("cloudinary").v2;
 const app = express();
 
@@ -35,7 +36,7 @@ app.use("/api/admin", adminRoutes);
 app.use('/api/skills',skillRoutes);
 app.use('/api/certificates',certificateRoutes);
 app.use('/api/blogs',blogRoutes);
-
+app.use('/api/projects',projectRoutes);
 //default error handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
