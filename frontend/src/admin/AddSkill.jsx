@@ -15,7 +15,7 @@ const initialSkills = [
 ];
 
 export default function AddSkill() {
-  const { skills, deleteSkill, addSkill, setSkills, updateSkill } =
+  const { skills, deleteSkill, addSkill, updateSkill } =
     useContext(SkillContext);
 
   const [formData, setFormData] = useState({
@@ -51,12 +51,13 @@ export default function AddSkill() {
       logo: skill.logo,
       category: skill.category,
     });
-    setEditId(skill.id);
+    setEditId(skill._id);
   };
 
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete this skill?")) {
-      setSkills(skills.filter((skill) => skill.id !== id));
+      // ✅ Call context delete function (this also calls backend API)
+      deleteSkill(id);
     }
   };
 
@@ -127,14 +128,14 @@ export default function AddSkill() {
           <tbody className="bg-white divide-y divide-gray-200">
             {skills.map((skill) => (
               <motion.tr
-                key={skill.id}
+                key={skill._id}
                 whileHover={{ scale: 1.02 }}
                 className="cursor-pointer transition"
               >
                 <td className="px-6 py-4">
                   <img
                     src={skill.logo}
-                    alt={skill.name}
+                    alt={skill.logo}
                     className="w-10 h-10 object-contain"
                   />
                 </td>
@@ -150,7 +151,7 @@ export default function AddSkill() {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(skill.id)}
+                    onClick={() => handleDelete(skill._id)}
                     className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
                   >
                     Delete

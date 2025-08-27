@@ -49,19 +49,19 @@ export default function CertificationAwards() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-pink-400 mb-12 flex items-center justify-center gap-3"
+          className="text-4xl font-bold text-pink-400 mb-12 flex flex-wrap items-center justify-center gap-3"
         >
           <Award className="w-8 h-8 text-white" />
-          <span className="text-white">Certifications</span> & Awards
+          <span className="text-white ">Certifications</span> & Awards
         </motion.h2>
 
         {/* Slider */}
         <div className="relative flex items-center justify-center">
           <button
             onClick={prevSlide}
-            className="absolute left-0 md:-left-16 p-3 bg-white/10 hover:bg-white/20 rounded-full transition"
+            className="absolute  left-0 md:-left-16 p-3 md:bg-white/10 hover:bg-white/20 rounded-full transition"
           >
-            <ChevronLeft className="w-6 h-6 text-pink-400" />
+            <ChevronLeft className="w-2 h-2 hidden md:block md:w-6 md:h-6 text-pink-400" />
           </button>
 
           <motion.div
@@ -100,9 +100,9 @@ export default function CertificationAwards() {
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 md:-right-16 p-3 bg-white/10 hover:bg-white/20 rounded-full transition"
+            className="absolute  right-0 md:-right-16 p-3 md:bg-white/10 hover:bg-white/20 rounded-full transition"
           >
-            <ChevronRight className="w-6 h-6 text-pink-400" />
+            <ChevronRight className="w-2 h-2 md:w-6 md:h-6 hidden md:block text-pink-400" />
           </button>
         </div>
 
