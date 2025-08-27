@@ -191,7 +191,9 @@ export default function AddBlog() {
                 </td>
                 <td className="px-6 py-4 text-gray-500">{blog.author}</td>
                 <td className="px-6 py-4 text-gray-500">{blog.date}</td>
-                <td className="px-6 py-4 text-gray-500">{blog.description}</td>
+                <td className="px-6 py-4 text-gray-500">
+                  {blog.description.slice(0, 100)}
+                </td>
                 <td className="px-6 py-4 flex gap-2">
                   <button
                     onClick={() => handleEdit(blog)}

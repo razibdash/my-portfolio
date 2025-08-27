@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useProjects } from "../hook/allData";
@@ -81,22 +81,22 @@ export default function ProjectDetails() {
               animate={{ opacity: 1 }}
               className="flex flex-wrap gap-6 mt-8"
             >
-              <a
-                href={project.liveLink}
+              <NavLink
+                to={project.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-5 py-2  lg:px-6 lg:py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-pink-500/50 transition"
               >
                 Live Demo
-              </a>
-              <a
+              </NavLink>
+              <NavLink
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-5 py-2 lg:px-6 lg:py-3 bg-gray-800/70 text-white rounded-xl shadow-lg hover:shadow-gray-500/50 transition"
               >
                 GitHub
-              </a>
+              </NavLink>
               <Link
                 to="/projects"
                 className="px-6 py-3 border border-pink-500 text-pink-400 rounded-xl hover:bg-pink-500/20 transition"

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { BookOpen, Briefcase, PenSquare, MessageSquare } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { AdminAuthContext } from "../context/AdminAuthContext";
+import DashboardCharts from "./DashboardChart";
 
 export default function DashboardHome() {
   const { admin } = useContext(AdminAuthContext);
@@ -79,6 +80,9 @@ export default function DashboardHome() {
           </div>
         </motion.div>
       </div>
+      <section>
+        <DashboardCharts />
+      </section>
     </div>
   );
 }
