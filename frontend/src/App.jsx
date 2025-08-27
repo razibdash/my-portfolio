@@ -4,6 +4,7 @@ import AppRouter from "./router";
 import Footer from "./components/footer/index.jsx";
 import { DataProvider } from "./context/DataContext";
 import { AdminAuthProvider } from "./context/AdminAuthContext.jsx";
+import { SkillProvider } from "./context/SkillContext.jsx";
 
 function Layout() {
   const location = useLocation();
@@ -28,11 +29,13 @@ function Layout() {
 export default function App() {
   return (
     <AdminAuthProvider>
-      <DataProvider>
-        <Router>
-          <Layout />
-        </Router>
-      </DataProvider>
+      <SkillProvider>
+        <DataProvider>
+          <Router>
+            <Layout />
+          </Router>
+        </DataProvider>
+      </SkillProvider>
     </AdminAuthProvider>
   );
 }

@@ -32,15 +32,17 @@ export function DataProvider({ children }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const skillsRes = await fetch("/api/skills");
+        const skillsRes = await fetch(
+          "http://localhost:5000/api/skills/skill/public"
+        );
         const skillsData = await skillsRes.json();
         dispatch({ type: "SET_SKILLS", payload: skillsData });
 
-        const projectsRes = await fetch("/api/projects");
+        const projectsRes = await fetch("http://localhost:5000/api/projects");
         const projectsData = await projectsRes.json();
         dispatch({ type: "SET_PROJECTS", payload: projectsData });
 
-        const blogsRes = await fetch("/api/blogs");
+        const blogsRes = await fetch("http://localhost:5000/api/blogs");
         const blogsData = await blogsRes.json();
         dispatch({ type: "SET_BLOGS", payload: blogsData });
       } catch (error) {

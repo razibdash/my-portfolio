@@ -1,12 +1,12 @@
+import { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { useAdminAuth } from "../context/AdminAuthContext";
+import { AdminAuthContext } from "../context/AdminAuthContext";
 
 export default function ProtectedRoute({ children }) {
-  const { isAdmin } = useAdminAuth();
+  const { admin, loading } = useContext(AdminAuthContext);
 
-  if (!isAdmin) {
-    return <Navigate to="/admin-login" replace />;
-  }
+  if (loading) return <div>Loading...</div>; // wait until localStorage is restored
+  if (!admin) return <Navigate to="/admin-login" replace />;
 
   return children;
 }

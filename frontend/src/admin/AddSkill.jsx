@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { SkillContext } from "../context/SkillContext";
+import { useContext } from "react";
 
 const initialSkills = [
   {
@@ -13,7 +15,9 @@ const initialSkills = [
 ];
 
 export default function AddSkill() {
-  const [skills, setSkills] = useState(initialSkills);
+  const { skills, deleteSkill, addSkill, setSkills, updateSkill } =
+    useContext(SkillContext);
+
   const [formData, setFormData] = useState({
     name: "",
     logo: "",
@@ -29,18 +33,15 @@ export default function AddSkill() {
     if (!formData.name || !formData.logo || !formData.category) return;
 
     if (editId) {
-      // Update existing skill
-      setSkills(
-        skills.map((skill) =>
-          skill.id === editId ? { id: editId, ...formData } : skill
-        )
-      );
+      // ✅ Update existing skill via context
+      updateSkill(editId, formData);
       setEditId(null);
     } else {
-      // Add new skill
-      const newSkill = { id: Date.now(), ...formData };
-      setSkills([...skills, newSkill]);
+      // ✅ Add new skill via context
+      addSkill(formData);
     }
+
+    // Reset form
     setFormData({ name: "", logo: "", category: "" });
   };
 
