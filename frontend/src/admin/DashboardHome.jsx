@@ -1,8 +1,29 @@
 import { motion } from "framer-motion";
 import { BookOpen, Briefcase, PenSquare, MessageSquare } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
+import { AdminAuthContext } from "../context/AdminAuthContext";
 
-export default function DashboardHome({ counts }) {
-  counts = { skills: 10, projects: 5, blogs: 8, messages: 12 };
+export default function DashboardHome() {
+  const { admin } = useContext(AdminAuthContext);
+  const [counts, setCounts] = useState({});
+  useEffect(() => {
+    // Fetch counts from the backend API
+    const fetchCounts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/counts", {
+          headers: {
+            Authorization: `Bearer ${admin?.token}`, // Use token from context
+          },
+        });
+        const data = await response.json();
+        setCounts(data);
+      } catch (error) {
+        console.error("Error fetching counts:", error);
+      }
+    };
+    fetchCounts();
+  }, []);
+
   return (
     <div className="p-6">
       <h2 className="text-3xl font-bold mb-8 text-indigo-800">

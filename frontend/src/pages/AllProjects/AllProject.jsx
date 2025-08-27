@@ -1,8 +1,16 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { projects } from "../projectsData";
+
 import { Link } from "react-router-dom";
+import { useProjects } from "../../hook/allData";
+import { useEffect } from "react";
 
 export default function Projects() {
+  const { projects, fetchProjects, fetchProjectById, loading, error } =
+    useProjects();
+  // Show only 3 projects
+  useEffect(() => {
+    fetchProjects();
+  }, []);
   return (
     <section
       id="projects"
@@ -19,7 +27,7 @@ export default function Projects() {
           <AnimatePresence>
             {projects.map((project, index) => (
               <motion.div
-                key={project.id}
+                key={project._id}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 40 }}
@@ -60,7 +68,7 @@ export default function Projects() {
                   whileTap={{ scale: 0.95 }}
                   className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium shadow-md  transition-all duration-300"
                 >
-                  <Link to={`/projects/${project.id}`}>Read More →</Link>
+                  <Link to={`/projects/${project._id}`}>Read More →</Link>
                 </motion.div>
               </motion.div>
             ))}

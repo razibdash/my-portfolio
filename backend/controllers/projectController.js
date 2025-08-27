@@ -12,7 +12,7 @@ const getAllProjects=async(req,res)=>{
 const getProjectById=async(req,res)=>{
   const {id}=req.params;
   try {
-    const project=await Project.findById(id);
+    const project=await Project.findById({_id:id});
     if(!project){
       return res.status(404).json({message:"Project not found"});
     }

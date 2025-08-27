@@ -6,7 +6,7 @@ export const DataContext = createContext();
 // Initial state
 const initialState = {
   skills: [],
-  projects: [],
+
   blogs: [],
 };
 
@@ -15,8 +15,7 @@ function dataReducer(state, action) {
   switch (action.type) {
     case "SET_SKILLS":
       return { ...state, skills: action.payload };
-    case "SET_PROJECTS":
-      return { ...state, projects: action.payload };
+
     case "SET_BLOGS":
       return { ...state, blogs: action.payload };
     default:
@@ -37,10 +36,6 @@ export function DataProvider({ children }) {
         );
         const skillsData = await skillsRes.json();
         dispatch({ type: "SET_SKILLS", payload: skillsData });
-
-        const projectsRes = await fetch("http://localhost:5000/api/projects");
-        const projectsData = await projectsRes.json();
-        dispatch({ type: "SET_PROJECTS", payload: projectsData });
 
         const blogsRes = await fetch("http://localhost:5000/api/blogs");
         const blogsData = await blogsRes.json();

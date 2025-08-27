@@ -29,7 +29,6 @@ export default function AddCertificate() {
         "http://localhost:5000/api/certificates/certificate/"
       );
       setCertificates(res.data.certificates);
-      toast.success("Certificates fetched successfully 🎉");
     } catch (err) {
       console.error("Failed to fetch certificates:", err);
       toast.error("Failed to fetch certificates ❌");

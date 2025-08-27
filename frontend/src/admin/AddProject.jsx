@@ -51,10 +51,11 @@ export default function AddProject() {
     if (editId) {
       // 🔹 Update API
       await updateProject(editId, { ...formData, tech: techArray });
-
+      toast.success("Project updated successfully ✅");
       setEditId(null);
     } else {
       // 🔹 Create API
+      toast.success("Project added successfully 🎉");
       await createProject({ ...formData, tech: techArray });
     }
 
@@ -86,6 +87,7 @@ export default function AddProject() {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this project?")) {
       await deleteProject(id);
+      toast.success("Project deleted successfully 🗑️");
     }
   };
 

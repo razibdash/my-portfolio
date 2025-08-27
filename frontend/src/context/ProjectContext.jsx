@@ -79,6 +79,7 @@ export const ProjectProvider = ({ children }) => {
   };
 
   const fetchProjectById = async (id) => {
+    console.log(id);
     dispatch({ type: "SET_LOADING" });
     try {
       const res = await axios.get(`${API_URL}${id}`);
