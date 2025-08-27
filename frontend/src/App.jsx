@@ -7,6 +7,7 @@ import { AdminAuthProvider } from "./context/AdminAuthContext.jsx";
 import { SkillProvider } from "./context/SkillContext.jsx";
 import { BlogProvider } from "./context/BlogContext.jsx";
 import { Toaster } from "react-hot-toast";
+import { ProjectProvider } from "./context/ProjectContext.jsx";
 function Layout() {
   const location = useLocation();
   const hideLayout = location.pathname.startsWith("/admin"); // hide navbar/footer for admin
@@ -34,9 +35,11 @@ export default function App() {
       <DataProvider>
         <SkillProvider>
           <BlogProvider>
-            <Router>
-              <Layout />
-            </Router>
+            <ProjectProvider>
+              <Router>
+                <Layout />
+              </Router>
+            </ProjectProvider>
           </BlogProvider>
         </SkillProvider>
       </DataProvider>

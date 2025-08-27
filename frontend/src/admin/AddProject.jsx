@@ -1,78 +1,91 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-const initialProjects = [
-  {
-    id: 1,
-    title: "Personalized AI Tutor",
-    description:
-      "A MERN-based AI tutor with LangChain integration for personalized learning.",
-    tech: ["React", "Node.js", "MongoDB", "AI"],
-    image: "/download (1).jpeg",
-    link: "https://github.com/yourusername/ai-tutor",
-  },
-];
-
+import { useProjects } from "../hook/allData";
+import toast from "react-hot-toast";
 export default function AddProject() {
-  const [projects, setProjects] = useState(initialProjects);
+  const {
+    projects,
+    project,
+    fetchProjects,
+    createProject,
+    updateProject,
+    deleteProject,
+    loading,
+    error,
+  } = useProjects();
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     tech: "",
     image: "",
-    link: "",
+    githubLink: "",
+    liveDemoLink: "",
   });
   const [editId, setEditId] = useState(null);
 
+  // ✅ Load all projects when component mounts
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  // ✅ Handle Input
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleAddOrEdit = (e) => {
+  // ✅ Handle Add or Edit
+  const handleAddOrEdit = async (e) => {
     e.preventDefault();
     if (
       !formData.title ||
       !formData.description ||
       !formData.tech ||
       !formData.image ||
-      !formData.link
+      !formData.githubLink ||
+      !formData.liveDemoLink
     )
       return;
 
     const techArray = formData.tech.split(",").map((t) => t.trim());
 
     if (editId) {
-      setProjects(
-        projects.map((proj) =>
-          proj.id === editId
-            ? { id: editId, ...formData, tech: techArray }
-            : proj
-        )
-      );
+      // 🔹 Update API
+      await updateProject(editId, { ...formData, tech: techArray });
+
       setEditId(null);
     } else {
-      setProjects([
-        ...projects,
-        { id: Date.now(), ...formData, tech: techArray },
-      ]);
+      // 🔹 Create API
+      await createProject({ ...formData, tech: techArray });
     }
 
-    setFormData({ title: "", description: "", tech: "", image: "", link: "" });
+    // ✅ Reset form
+    setFormData({
+      title: "",
+      description: "",
+      tech: "",
+      image: "",
+      githubLink: "",
+      liveDemoLink: "",
+    });
   };
 
+  // ✅ Handle Edit
   const handleEdit = (project) => {
     setFormData({
       title: project.title,
       description: project.description,
       tech: project.tech.join(", "),
       image: project.image,
-      link: project.link,
+      githubLink: project.githubLink,
+      liveDemoLink: project.liveDemoLink,
     });
-    setEditId(project.id);
+    setEditId(project._id); // 🔹 backend `_id`
   };
 
-  const handleDelete = (id) => {
+  // ✅ Handle Delete
+  const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this project?")) {
-      setProjects(projects.filter((proj) => proj.id !== id));
+      await deleteProject(id);
     }
   };
 
@@ -121,10 +134,18 @@ export default function AddProject() {
         />
         <input
           type="text"
-          name="link"
-          value={formData.link}
+          name="githubLink"
+          value={formData.githubLink}
           onChange={handleChange}
-          placeholder="Project Link"
+          placeholder="Github Link"
+          className="p-3 rounded-lg flex-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
+        />
+        <input
+          type="text"
+          name="liveDemoLink"
+          value={formData.liveDemoLink}
+          onChange={handleChange}
+          placeholder="Live Link"
           className="p-3 rounded-lg flex-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
         />
         <button
@@ -153,7 +174,10 @@ export default function AddProject() {
                 Tech Stack
               </th>
               <th className="px-6 py-3 text-left text-sm font-semibold">
-                Link
+                Github
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-semibold">
+                LiveDemo
               </th>
               <th className="px-6 py-3 text-left text-sm font-semibold">
                 Actions
@@ -180,6 +204,16 @@ export default function AddProject() {
                 <td className="px-6 py-4 text-gray-500">{proj.description}</td>
                 <td className="px-6 py-4 text-gray-500">
                   {proj.tech.join(", ")}
+                </td>
+                <td className="px-6 py-4">
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    View
+                  </a>
                 </td>
                 <td className="px-6 py-4">
                   <a
