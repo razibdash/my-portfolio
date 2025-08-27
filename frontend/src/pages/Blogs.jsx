@@ -118,14 +118,13 @@ export default function BlogSection() {
               <p className="text-gray-300 mb-6">
                 {blog.description.slice(0, 100)}...
               </p>
-              <motion.a
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="#"
                 className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium shadow-md  transition-all duration-300"
               >
-                Read More →
-              </motion.a>
+                <Link to={`/blog/${blog.id}`}>Read More →</Link>
+              </motion.div>
             </motion.div>
           ))}
         </div>
