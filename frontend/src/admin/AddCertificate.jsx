@@ -26,7 +26,7 @@ export default function AddCertificate() {
   const fetchCertificates = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/certificates/certificate/"
+        "https://myportfolio-ebon-tau.vercel.app/api/certificates/certificate/"
       );
       setCertificates(res.data.certificates);
     } catch (err) {
@@ -49,7 +49,7 @@ export default function AddCertificate() {
       if (editId) {
         // Update
         await axios.put(
-          `http://localhost:5000/api/certificates/certificate/${editId}`,
+          `https://myportfolio-ebon-tau.vercel.app/api/certificates/certificate/${editId}`,
           formData,
           {
             headers: {
@@ -61,7 +61,7 @@ export default function AddCertificate() {
       } else {
         // Add
         await axios.post(
-          "http://localhost:5000/api/certificates/certificate/",
+          "https://myportfolio-ebon-tau.vercel.app/api/certificates/certificate/",
           formData,
           {
             headers: {
@@ -96,7 +96,7 @@ export default function AddCertificate() {
     if (confirm("Are you sure you want to delete this certificate?")) {
       try {
         await axios.delete(
-          `http://localhost:5000/api/certificates/certificate/${id}`,
+          `https://myportfolio-ebon-tau.vercel.app/api/certificates/certificate/${id}`,
           {
             headers: {
               Authorization: `Bearer ${admin?.token}`,

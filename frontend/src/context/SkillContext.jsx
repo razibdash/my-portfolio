@@ -11,11 +11,14 @@ export const SkillProvider = ({ children }) => {
   // Fetch Skills
   const fetchSkills = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/skills/skill", {
-        headers: {
-          Authorization: `Bearer ${token}`, // ✅ pass token
-        },
-      });
+      const res = await axios.get(
+        "https://myportfolio-ebon-tau.vercel.app/api/skills/skill",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ pass token
+          },
+        }
+      );
       setSkills(res.data);
     } catch (err) {
       console.error("Error fetching skills:", err);
@@ -25,11 +28,15 @@ export const SkillProvider = ({ children }) => {
   // Add Skill
   const addSkill = async (skillData) => {
     try {
-      await axios.post("http://localhost:5000/api/skills/skill", skillData, {
-        headers: {
-          Authorization: `Bearer ${token}`, // ✅ pass token
-        },
-      });
+      await axios.post(
+        "https://myportfolio-ebon-tau.vercel.app/api/skills/skill",
+        skillData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ pass token
+          },
+        }
+      );
       fetchSkills();
     } catch (err) {
       console.error("Error adding skill:", err);
@@ -40,7 +47,7 @@ export const SkillProvider = ({ children }) => {
   const updateSkill = async (id, skillData) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/skills/skill/${id}`,
+        `https://myportfolio-ebon-tau.vercel.app/api/skills/skill/${id}`,
         skillData,
         {
           headers: {
@@ -57,11 +64,14 @@ export const SkillProvider = ({ children }) => {
   // Delete Skill
   const deleteSkill = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/skills/skill/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`, // ✅ pass token
-        },
-      });
+      await axios.delete(
+        `https://myportfolio-ebon-tau.vercel.app/api/skills/skill/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ pass token
+          },
+        }
+      );
       fetchSkills();
     } catch (err) {
       console.error("Error deleting skill:", err);

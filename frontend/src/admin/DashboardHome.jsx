@@ -11,11 +11,14 @@ export default function DashboardHome() {
     // Fetch counts from the backend API
     const fetchCounts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/counts", {
-          headers: {
-            Authorization: `Bearer ${admin?.token}`, // Use token from context
-          },
-        });
+        const response = await fetch(
+          "https://myportfolio-ebon-tau.vercel.app/api/counts",
+          {
+            headers: {
+              Authorization: `Bearer ${admin?.token}`, // Use token from context
+            },
+          }
+        );
         const data = await response.json();
         setCounts(data);
       } catch (error) {

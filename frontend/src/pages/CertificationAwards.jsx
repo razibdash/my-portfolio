@@ -22,7 +22,7 @@ export default function CertificationAwards() {
   const fetchCertificates = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/certificates/certificate/"
+        "https://myportfolio-ebon-tau.vercel.app/api/certificates/certificate/"
       );
       setCertificates(res.data.certificates);
       setLoading(false);
@@ -91,7 +91,7 @@ export default function CertificationAwards() {
                     </p>
                     <p className="text-gray-400 mb-4">
                       <span className="font-bold">Date:</span>{" "}
-                      {certificates[current].date}
+                      {certificates[current].date.slice(0, 10)}
                     </p>
                   </div>
                 </div>

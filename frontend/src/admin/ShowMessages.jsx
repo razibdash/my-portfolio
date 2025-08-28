@@ -14,7 +14,7 @@ export default function ShowMessages() {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/contacts/contact",
+          "https://myportfolio-ebon-tau.vercel.app/api/contacts/contact",
           {
             headers: { Authorization: `Bearer ${admin?.token}` },
           }
@@ -33,9 +33,12 @@ export default function ShowMessages() {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this message?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/contacts/contact/${id}`, {
-          headers: { Authorization: `Bearer ${admin?.token}` },
-        });
+        await axios.delete(
+          `https://myportfolio-ebon-tau.vercel.app/api/contacts/contact/${id}`,
+          {
+            headers: { Authorization: `Bearer ${admin?.token}` },
+          }
+        );
 
         // Update local state after delete
         setMessages((prev) => prev.filter((msg) => msg._id !== id));

@@ -32,12 +32,14 @@ export function DataProvider({ children }) {
     async function fetchData() {
       try {
         const skillsRes = await fetch(
-          "http://localhost:5000/api/skills/skill/public"
+          "https://myportfolio-ebon-tau.vercel.app/api/skills/skill/public"
         );
         const skillsData = await skillsRes.json();
         dispatch({ type: "SET_SKILLS", payload: skillsData });
 
-        const blogsRes = await fetch("http://localhost:5000/api/blogs");
+        const blogsRes = await fetch(
+          "https://myportfolio-ebon-tau.vercel.app/api/blogs"
+        );
         const blogsData = await blogsRes.json();
         dispatch({ type: "SET_BLOGS", payload: blogsData });
       } catch (error) {

@@ -54,7 +54,8 @@ export const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(projectsReducer, initialState);
 
   // Base API
-  const API_URL = "http://localhost:5000/api/projects/project/";
+  const API_URL =
+    "https://myportfolio-ebon-tau.vercel.app/api/projects/project/";
 
   // Get Token from localStorage
   const getAuthHeader = () => {

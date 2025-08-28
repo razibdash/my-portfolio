@@ -20,10 +20,13 @@ export const AdminAuthProvider = ({ children }) => {
   // ✅ Login function
   const login = async (email, password) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/admin/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://myportfolio-ebon-tau.vercel.app/api/admin/login",
+        {
+          email,
+          password,
+        }
+      );
       const { token } = res.data;
       const adminObj = { token }; // can add email or name if returned from backen
       // Save to localStorage (key name must match the one used in useEffect)

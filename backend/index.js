@@ -10,7 +10,6 @@ const blogRoutes=require('./routes/blogRoutes')
 const projectRoutes=require('./routes/projectRoutes')
 const countRoutes=require('./routes/countRoutes')
 const contactRoutes=require('./routes/contactRoutes')
-const cloudinary = require("cloudinary").v2;
 const app = express();
 
 dotenv.config()
