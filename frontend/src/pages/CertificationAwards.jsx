@@ -51,7 +51,6 @@ export default function CertificationAwards() {
               transition={{ duration: 0.6 }}
               className="text-4xl font-bold text-pink-400 mb-12 flex flex-wrap items-center justify-center gap-3"
             >
-              <Award className="w-8 h-8 text-white" />
               <span className="text-white ">Certifications</span> & Awards
             </motion.h2>
 

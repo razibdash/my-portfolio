@@ -1,7 +1,9 @@
 import axios from "axios";
 import { motion } from "framer-motion";
+
 import { useState } from "react";
 import toast from "react-hot-toast";
+
 export default function Contact() {
   const [contactData, setContactData] = useState({
     name: "",
@@ -37,6 +39,14 @@ export default function Contact() {
       id="contact"
       className="relative py-20 bg-gradient-to-r from-purple-900 via-indigo-900 to-black text-white overflow-hidden"
     >
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-4xl font-bold text-pink-400 mb-12 flex flex-wrap items-center justify-center gap-3"
+      >
+        <span className="text-white ">Contact</span> Me
+      </motion.h2>
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
         {/* Left: Contact Form */}
         <motion.div

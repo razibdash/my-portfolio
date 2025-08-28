@@ -15,7 +15,7 @@ export default function MissionVision() {
           transition={{ duration: 0.6 }}
           className="text-4xl font-bold text-center text-pink-400 mb-16"
         >
-          <span className="text-white">✨ My Mission</span> & Vision
+          <span className="text-white">My Mission</span> & Vision
         </motion.h2>
 
         {/* Mission & Vision Grid */}
@@ -32,7 +32,6 @@ export default function MissionVision() {
             <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-pink-500 animate-[pulse_2s_infinite]"></div>
 
             <div className="flex items-center gap-3 mb-4">
-              <Target className="w-8 h-8 text-pink-400" /> {/* 🎯 Icon */}
               <h3 className="text-2xl font-semibold text-pink-400">Mission</h3>
             </div>
             <p className="text-gray-300 leading-relaxed">

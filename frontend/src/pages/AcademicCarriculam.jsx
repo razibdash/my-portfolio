@@ -56,7 +56,11 @@ export default function Curriculum() {
 
               {/* Card */}
               <div className="bg-gray-900/60 backdrop-blur-md p-6 rounded-2xl shadow-xl hover:shadow-pink-500/40 hover:scale-105 transition">
-                <h3 className="text-xl font-semibold text-pink-400">
+                <h3
+                  className={`text-xl font-semibold ${
+                    index % 2 === 0 ? "text-pink-400" : "text-indigo-400"
+                  }`}
+                >
                   {item.degree}
                 </h3>
                 <p className="text-gray-400">{item.institution}</p>

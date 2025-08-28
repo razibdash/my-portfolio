@@ -9,11 +9,8 @@ export default function Projects() {
     projects,
     project,
     fetchProjects,
-    createProject,
-    updateProject,
-    deleteProject,
+
     loading,
-    error,
   } = useProjects();
   // Show only 3 projects
   useEffect(() => {
