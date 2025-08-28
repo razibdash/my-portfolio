@@ -25,7 +25,6 @@ export default function CertificationAwards() {
         "http://localhost:5000/api/certificates/certificate/"
       );
       setCertificates(res.data.certificates);
-      console.log(res.data);
       setLoading(false);
     } catch (err) {
       console.error("Failed to fetch certificates:", err);

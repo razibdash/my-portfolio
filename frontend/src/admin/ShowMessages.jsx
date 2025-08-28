@@ -1,91 +1,109 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-// Sample messages
-const initialMessages = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john@example.com",
-    subject: "Portfolio Inquiry",
-    message: "Hi Razib, I love your portfolio! Can you help me with MERN?",
-    date: "2025-08-27",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane@example.com",
-    subject: "Collaboration",
-    message: "Would you like to collaborate on a project?",
-    date: "2025-08-26",
-  },
-];
-
+import toast from "react-hot-toast";
+import axios from "axios";
+import { AdminAuthContext } from "../context/AdminAuthContext";
+import Loader from "../components/Loader";
 export default function ShowMessages() {
-  const [messages, setMessages] = useState(initialMessages);
+  const { admin } = useContext(AdminAuthContext);
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleDelete = (id) => {
+  // Fetch all messages from API
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:5000/api/contacts/contact",
+          {
+            headers: { Authorization: `Bearer ${admin?.token}` },
+          }
+        );
+        setMessages(res.data.totalContacts);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching messages:", err);
+        toast.error("Failed to load messages");
+      }
+    };
+    fetchMessages();
+  }, [admin]);
+
+  // Delete message by ID
+  const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this message?")) {
-      setMessages(messages.filter((msg) => msg.id !== id));
+      try {
+        await axios.delete(`http://localhost:5000/api/contacts/contact/${id}`, {
+          headers: { Authorization: `Bearer ${admin?.token}` },
+        });
+
+        // Update local state after delete
+        setMessages((prev) => prev.filter((msg) => msg._id !== id));
+        toast.success("Message deleted");
+      } catch (err) {
+        console.error("Error deleting message:", err);
+        toast.error("Failed to delete message");
+      }
     }
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <h2 className="text-3xl font-bold text-indigo-800 mb-8">Messages</h2>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="p-6 bg-gray-100 min-h-screen">
+          <h2 className="text-3xl font-bold text-indigo-800 mb-8">Messages</h2>
 
-      {/* Messages Table */}
-      <div className="overflow-x-auto bg-white rounded-2xl shadow-lg">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-indigo-700 text-white">
-            <tr>
-              <th className="px-6 py-3 text-left text-sm font-semibold">
-                Name
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-semibold">
-                Email
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-semibold">
-                Subject
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-semibold">
-                Message
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-semibold">
-                Date
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-semibold">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {messages.map((msg) => (
-              <motion.tr
-                key={msg.id}
-                whileHover={{ scale: 1.02 }}
-                className="cursor-pointer transition"
-              >
-                <td className="px-6 py-4 font-medium text-gray-700">
-                  {msg.name}
-                </td>
-                <td className="px-6 py-4 text-gray-500">{msg.email}</td>
-                <td className="px-6 py-4 text-gray-500">{msg.subject}</td>
-                <td className="px-6 py-4 text-gray-500">{msg.message}</td>
-                <td className="px-6 py-4 text-gray-500">{msg.date}</td>
-                <td className="px-6 py-4">
-                  <button
-                    onClick={() => handleDelete(msg.id)}
-                    className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
+          {/* Messages Table */}
+          <div className="overflow-x-auto bg-white rounded-2xl shadow-lg">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-indigo-700 text-white">
+                <tr>
+                  <th className="px-6 py-3 text-left text-sm font-semibold">
+                    Name
+                  </th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold">
+                    Email
+                  </th>
+
+                  <th className="px-6 py-3 text-left text-sm font-semibold">
+                    Message
+                  </th>
+
+                  <th className="px-6 py-3 text-left text-sm font-semibold">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {messages.map((msg) => (
+                  <motion.tr
+                    key={msg._id}
+                    whileHover={{ scale: 1.02 }}
+                    className="cursor-pointer transition"
                   >
-                    Delete
-                  </button>
-                </td>
-              </motion.tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+                    <td className="px-6 py-4 font-medium text-gray-700">
+                      {msg.name}
+                    </td>
+                    <td className="px-6 py-4 text-gray-500">{msg.email}</td>
+                    <td className="px-6 py-4 text-gray-500">{msg.message}</td>
+
+                    <td className="px-6 py-4">
+                      <button
+                        onClick={() => handleDelete(msg._id)}
+                        className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

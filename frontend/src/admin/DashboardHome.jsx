@@ -76,7 +76,7 @@ export default function DashboardHome() {
           <MessageSquare size={36} className="mr-4 text-green-400" />
           <div>
             <h3 className="text-lg font-semibold">Messages</h3>
-            <p className="text-2xl font-bold">{counts.messages}</p>
+            <p className="text-2xl font-bold">{counts.contacts}</p>
           </div>
         </motion.div>
       </div>

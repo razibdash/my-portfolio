@@ -1,6 +1,37 @@
+import axios from "axios";
 import { motion } from "framer-motion";
-
+import { useState } from "react";
+import toast from "react-hot-toast";
 export default function Contact() {
+  const [contactData, setContactData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setContactData({ ...contactData, [name]: value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/contacts/contact",
+        contactData
+      );
+
+      if (response.status === 201) {
+        toast.success("Message sent successfully!");
+        setContactData({ name: "", email: "", message: "" });
+      } else {
+        toast.error("Failed to send message.");
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -23,6 +54,9 @@ export default function Contact() {
               <label className="block text-sm font-medium mb-2">Name</label>
               <input
                 type="text"
+                name="name"
+                value={contactData.name}
+                onChange={handleChange}
                 placeholder="Your name"
                 className="w-full px-4 py-3 rounded-xl bg-gray-800/70 text-white border border-gray-700 focus:ring-2 focus:ring-pink-500 focus:outline-none"
               />
@@ -34,6 +68,9 @@ export default function Contact() {
               <input
                 type="email"
                 placeholder="Your email"
+                name="email"
+                value={contactData.email}
+                onChange={handleChange}
                 className="w-full px-4 py-3 rounded-xl bg-gray-800/70 text-white border border-gray-700 focus:ring-2 focus:ring-pink-500 focus:outline-none"
               />
             </div>
@@ -43,6 +80,9 @@ export default function Contact() {
               <label className="block text-sm font-medium mb-2">Message</label>
               <textarea
                 rows="4"
+                name="message"
+                value={contactData.message}
+                onChange={handleChange}
                 placeholder="Write your message..."
                 className="w-full px-4 py-3 rounded-xl bg-gray-800/70 text-white border border-gray-700 focus:ring-2 focus:ring-pink-500 focus:outline-none"
               ></textarea>
@@ -53,6 +93,7 @@ export default function Contact() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
+              onClick={handleSubmit}
               className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-pink-500/30 transition"
             >
               Send Message
