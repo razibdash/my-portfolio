@@ -1,6 +1,6 @@
 const Project = require("../models/projectModel");
-const Skill = require("../models/SkillsModel");
-const Blog = require("../models/BlogModel");
+const Skill = require("../models/skillsModel");
+const Blog = require("../models/blogModel");
 const Contact=require('../models/contactModel');
 
 // GET: Count Projects, Skills, Blogs
