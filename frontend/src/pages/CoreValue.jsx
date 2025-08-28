@@ -1,4 +1,11 @@
 import { motion } from "framer-motion";
+import {
+  GraduationCap,
+  Handshake,
+  Lightbulb,
+  Sparkles,
+  Users,
+} from "lucide-react";
 
 const coreValues = [
   {
@@ -6,24 +13,28 @@ const coreValues = [
     title: "Commitment to Integrity",
     description:
       "I uphold honesty and transparency in all my work, ensuring ethical and lawful practices in a remote environment.",
+    icon: <GraduationCap className="w-8 h-8 text-pink-500" />,
   },
   {
     id: 2,
     title: "Continuous Learning",
     description:
       "I strive to expand my knowledge and skills consistently, adapting to new technologies and methodologies.",
+    icon: <Lightbulb className="w-8 h-8 text-indigo-500" />,
   },
   {
     id: 3,
     title: "Collaboration & Communication",
     description:
       "I value teamwork and effective communication, ensuring smooth coordination across diverse teams and projects.",
+    icon: <Users className="w-8 h-8 text-pink-500" />,
   },
   {
     id: 4,
     title: "Innovation & Creativity",
     description:
       "I approach problems with creativity and innovation, delivering unique solutions that add value.",
+    icon: <Sparkles className="w-8 h-8 text-indigo-500" />,
   },
 ];
 
@@ -99,6 +110,14 @@ export default function CoreValues() {
                 transition={{ repeat: Infinity, duration: 9, ease: "linear" }}
               />
 
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                className="p-4 rounded-full bg-white/10 flex items-center justify-center shadow-lg"
+              >
+                {value.icon}
+              </motion.div>
               <h3 className="relative text-xl font-semibold mb-3">
                 {value.title}
               </h3>

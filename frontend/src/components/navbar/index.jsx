@@ -39,21 +39,21 @@ export default function Navbar() {
         <div className="hidden md:flex space-x-5 text-white">
           <motion.a
             whileHover={{ scale: 1.2, rotate: 10 }}
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/razibdash/"
             target="_blank"
           >
             <FaLinkedin size={24} />
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.2, rotate: -10 }}
-            href="https://github.com"
+            href="https://github.com/razibdash"
             target="_blank"
           >
             <FaGithub size={24} />
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.2, rotate: 10 }}
-            href="https://facebook.com"
+            href="https://www.facebook.com/avronilrajib"
             target="_blank"
           >
             <FaFacebook size={24} />
@@ -78,28 +78,39 @@ export default function Navbar() {
                 key={i}
                 className="cursor-pointer hover:text-pink-300 transition duration-300"
               >
-                {item}
+                {item === "Home" ? (
+                  <Link onClick={() => setIsOpen(false)} to="/">
+                    {item}
+                  </Link>
+                ) : (
+                  <Link
+                    onClick={() => setIsOpen(false)}
+                    to={`/${item.toLowerCase()}`}
+                  >
+                    {item}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
           <div className="flex space-x-5 mt-6">
             <motion.a
               whileHover={{ scale: 1.2 }}
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/razibdash/"
               target="_blank"
             >
               <FaLinkedin size={26} />
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.2 }}
-              href="https://github.com"
+              href="https://github.com/razibdash"
               target="_blank"
             >
               <FaGithub size={26} />
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.2 }}
-              href="https://facebook.com"
+              href="https://www.facebook.com/avronilrajib"
               target="_blank"
             >
               <FaFacebook size={26} />

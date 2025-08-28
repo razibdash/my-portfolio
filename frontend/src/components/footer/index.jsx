@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaFacebook, FaArrowUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -74,24 +75,29 @@ export default function Footer() {
           <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
           <ul className="space-y-2">
             <li>
-              <a href="#home" className="hover:text-pink-400 transition">
+              <Link to="/" className="hover:text-pink-400 transition">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#about" className="hover:text-pink-400 transition">
+              <Link to="/about" className="hover:text-pink-400 transition">
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#projects" className="hover:text-pink-400 transition">
+              <Link to="/projects" className="hover:text-pink-400 transition">
                 Projects
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#contact" className="hover:text-pink-400 transition">
+              <Link to="/blog" className="hover:text-pink-400 transition">
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-pink-400 transition">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -102,7 +108,7 @@ export default function Footer() {
           <div className="flex justify-center md:justify-start space-x-5">
             <motion.a
               whileHover={{ scale: 1.2, rotate: 10 }}
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/razibdash/"
               target="_blank"
               className="text-white hover:text-pink-400 transition"
             >
@@ -110,7 +116,7 @@ export default function Footer() {
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.2, rotate: -10 }}
-              href="https://github.com"
+              href="https://github.com/razibdash"
               target="_blank"
               className="text-white hover:text-pink-400 transition"
             >
@@ -118,7 +124,7 @@ export default function Footer() {
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.2, rotate: 10 }}
-              href="https://facebook.com"
+              href="https://www.facebook.com/avronilrajib"
               target="_blank"
               className="text-white hover:text-pink-400 transition"
             >
