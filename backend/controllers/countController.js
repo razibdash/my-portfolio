@@ -1,5 +1,5 @@
 const Project = require("../models/projectModel");
-const Skill = require("../models/skillsModel");
+const Skill = require("../models/SkillsModel");
 const Blog = require("../models/blogModel");
 const Contact=require('../models/contactModel');
 
