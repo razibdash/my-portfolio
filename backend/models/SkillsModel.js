@@ -14,6 +14,4 @@ const SkillsSchema=new mongoose.Schema({
     required:true
   }
 });
-
-const Skill = mongoose.models.Skill || mongoose.model("Skill", SkillsSchema);
-module.exports=Skill;
+module.exports = mongoose.model("Skill", SkillsSchema);
