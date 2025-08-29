@@ -19,7 +19,7 @@ export default function Contact() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://myportfolio-ebon-tau.vercel.app/api/contacts/contact",
+        "https://my-portfolio-pyar.onrender.com/api/contacts/contact",
         contactData
       );
 

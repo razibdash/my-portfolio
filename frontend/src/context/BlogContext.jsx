@@ -62,7 +62,7 @@ export function BlogProvider({ children }) {
     dispatch({ type: "SET_LOADING" });
     try {
       const res = await axios.get(
-        "https://myportfolio-ebon-tau.vercel.app/api/blogs/blog/"
+        "https://my-portfolio-pyar.onrender.com/api/blogs/blog/"
       );
       dispatch({ type: "SET_BLOGS", payload: res.data });
     } catch (err) {
@@ -77,7 +77,7 @@ export function BlogProvider({ children }) {
   const fetchBlogById = async (id) => {
     try {
       const res = await axios.get(
-        `https://myportfolio-ebon-tau.vercel.app/api/blogs/blog/${id}`
+        `https://my-portfolio-pyar.onrender.com/api/blogs/blog/${id}`
       );
       return res.data;
     } catch (err) {
@@ -93,7 +93,7 @@ export function BlogProvider({ children }) {
     dispatch({ type: "SET_LOADING" });
     try {
       const res = await axios.post(
-        "https://myportfolio-ebon-tau.vercel.app/api/blogs/blog/",
+        "https://my-portfolio-pyar.onrender.com/api/blogs/blog/",
         blogData,
         getAuthHeader()
       );
@@ -111,7 +111,7 @@ export function BlogProvider({ children }) {
     dispatch({ type: "SET_LOADING" });
     try {
       const res = await axios.put(
-        `https://myportfolio-ebon-tau.vercel.app/api/blogs/blog/${id}`,
+        `https://my-portfolio-pyar.onrender.com/api/blogs/blog/${id}`,
         blogData,
         getAuthHeader()
       );
@@ -129,7 +129,7 @@ export function BlogProvider({ children }) {
     dispatch({ type: "SET_LOADING" });
     try {
       await axios.delete(
-        `https://myportfolio-ebon-tau.vercel.app/api/blogs/blog/${id}`,
+        `https://my-portfolio-pyar.onrender.com/api/blogs/blog/${id}`,
         getAuthHeader()
       );
       dispatch({ type: "DELETE_BLOG", payload: id });

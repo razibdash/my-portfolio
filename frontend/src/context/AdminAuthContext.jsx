@@ -21,7 +21,7 @@ export const AdminAuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const res = await axios.post(
-        "https://myportfolio-ebon-tau.vercel.app/api/admin/login",
+        "https://my-portfolio-pyar.onrender.com/api/admin/login",
         {
           email,
           password,

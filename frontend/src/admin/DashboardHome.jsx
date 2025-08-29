@@ -12,7 +12,7 @@ export default function DashboardHome() {
     const fetchCounts = async () => {
       try {
         const response = await fetch(
-          "https://myportfolio-ebon-tau.vercel.app/api/counts",
+          "https://my-portfolio-pyar.onrender.com/api/counts",
           {
             headers: {
               Authorization: `Bearer ${admin?.token}`, // Use token from context

@@ -12,7 +12,7 @@ export const SkillProvider = ({ children }) => {
   const fetchSkills = async () => {
     try {
       const res = await axios.get(
-        "https://myportfolio-ebon-tau.vercel.app/api/skills/skill",
+        "https://my-portfolio-pyar.onrender.com/api/skills/skill",
         {
           headers: {
             Authorization: `Bearer ${token}`, // ✅ pass token
@@ -29,7 +29,7 @@ export const SkillProvider = ({ children }) => {
   const addSkill = async (skillData) => {
     try {
       await axios.post(
-        "https://myportfolio-ebon-tau.vercel.app/api/skills/skill",
+        "https://my-portfolio-pyar.onrender.com/api/skills/skill",
         skillData,
         {
           headers: {
@@ -47,7 +47,7 @@ export const SkillProvider = ({ children }) => {
   const updateSkill = async (id, skillData) => {
     try {
       await axios.put(
-        `https://myportfolio-ebon-tau.vercel.app/api/skills/skill/${id}`,
+        `https://my-portfolio-pyar.onrender.com/api/skills/skill/${id}`,
         skillData,
         {
           headers: {
@@ -65,7 +65,7 @@ export const SkillProvider = ({ children }) => {
   const deleteSkill = async (id) => {
     try {
       await axios.delete(
-        `https://myportfolio-ebon-tau.vercel.app/api/skills/skill/${id}`,
+        `https://my-portfolio-pyar.onrender.com/api/skills/skill/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // ✅ pass token

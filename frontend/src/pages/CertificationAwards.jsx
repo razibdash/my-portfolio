@@ -22,7 +22,7 @@ export default function CertificationAwards() {
   const fetchCertificates = async () => {
     try {
       const res = await axios.get(
-        "https://myportfolio-ebon-tau.vercel.app/api/certificates/certificate/"
+        "https://my-portfolio-pyar.onrender.com/api/certificates/certificate/"
       );
       setCertificates(res.data.certificates);
       setLoading(false);

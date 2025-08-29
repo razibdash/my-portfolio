@@ -55,7 +55,7 @@ export const ProjectProvider = ({ children }) => {
 
   // Base API
   const API_URL =
-    "https://myportfolio-ebon-tau.vercel.app/api/projects/project/";
+    "https://my-portfolio-pyar.onrender.com/api/projects/project/";
 
   // Get Token from localStorage
   const getAuthHeader = () => {

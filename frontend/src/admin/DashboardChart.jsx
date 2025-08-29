@@ -27,14 +27,14 @@ export default function DashboardCharts() {
     const fetchData = async () => {
       try {
         const [blogsRes, skillsRes, projectsRes] = await Promise.all([
-          fetch("https://myportfolio-ebon-tau.vercel.app/api/blogs/blog/", {
+          fetch("https://my-portfolio-pyar.onrender.com/api/blogs/blog/", {
             headers: { Authorization: `Bearer ${admin?.token}` },
           }),
-          fetch("https://myportfolio-ebon-tau.vercel.app/api/skills/skill/", {
+          fetch("https://my-portfolio-pyar.onrender.com/api/skills/skill/", {
             headers: { Authorization: `Bearer ${admin?.token}` },
           }),
           fetch(
-            "https://myportfolio-ebon-tau.vercel.app/api/projects/project/",
+            "https://my-portfolio-pyar.onrender.com/api/projects/project/",
             {
               headers: { Authorization: `Bearer ${admin?.token}` },
             }
