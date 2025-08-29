@@ -3,25 +3,25 @@ import { motion } from "framer-motion";
 export default function Curriculum() {
   const academics = [
     {
-      year: "2018 - 2022",
+      year: "2022 - 2025",
       degree: "B.Sc. in Computer Science & Engineering",
       institution: "Metropolitan University, Sylhet",
       details:
         "Focused on Artificial Intelligence, Machine Learning, and Full-Stack Web Development. Built projects like LMS System, Medical Chatbot, and AI-powered applications.",
     },
     {
-      year: "2016 - 2018",
+      year: "2018 - 2019",
       degree: "Higher Secondary Certificate (HSC)",
-      institution: "Sylhet Govt. College",
+      institution: "Nabiganj Govt. College",
       details:
-        "Specialized in Science with a strong foundation in Mathematics, Physics, and Computer Science.",
+        "Specialized in Science with a strong foundation in Mathematics, Physics, and Computer Programming.",
     },
     {
-      year: "2014 - 2016",
+      year: "2016 - 2017",
       degree: "Secondary School Certificate (SSC)",
-      institution: "Sylhet Govt. Pilot High School",
+      institution: "Hazrat Shah Taj Uddin Quereshi (r) High School",
       details:
-        "Completed SSC with distinction, developing early interests in programming and problem-solving.",
+        "Completed SSC with distinction, interested in computer science.",
     },
   ];
 

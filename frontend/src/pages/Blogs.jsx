@@ -85,7 +85,7 @@ export default function BlogSection() {
                   <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
                   <p className="text-sm text-gray-400 mb-4">
                     By <span className="text-pink-400">{blog.author}</span> on{" "}
-                    {blog.date}
+                    {blog.date.slice(0, 10)}
                   </p>
                   <p className="text-gray-300 mb-6">
                     {blog.description.slice(0, 100)}...

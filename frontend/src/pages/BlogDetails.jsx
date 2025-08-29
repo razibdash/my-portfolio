@@ -46,7 +46,7 @@ export default function BlogDetails() {
               animate={{ opacity: 1 }}
               className="text-gray-400"
             >
-              By {blog.author} on {blog.date}
+              By {blog.author} on {blog.date.slice(0, 10)}
             </motion.div>
 
             {/* Image */}

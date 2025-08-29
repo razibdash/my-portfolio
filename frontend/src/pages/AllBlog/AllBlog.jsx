@@ -4,45 +4,6 @@ import { useBlog } from "../../hook/allData";
 import Loader from "../../components/Loader";
 import { Link } from "react-router-dom";
 
-// const blogs = [
-//   {
-//     id: 1,
-//     image: "/download.jpeg",
-//     title: "Best Practices for React Development",
-//     author: "Razib Dash",
-//     date: "2024-09-25",
-//     description:
-//       "React is an essential tool for modern web developers. Explore best practices to write clean and maintainable React code.",
-//   },
-//   {
-//     id: 2,
-//     image: "/download.jpeg",
-//     title: "Mastering TailwindCSS for Modern UI",
-//     author: "Razib Dash",
-//     date: "2024-08-15",
-//     description:
-//       "Learn how to build sleek and responsive interfaces with TailwindCSS. Discover tips, tricks, and design strategies.",
-//   },
-//   {
-//     id: 3,
-//     image: "/download.jpeg",
-//     title: "The Future of AI in Web Development",
-//     author: "Razib Dash",
-//     date: "2024-07-10",
-//     description:
-//       "Artificial Intelligence is reshaping web development. Explore how AI tools enhance productivity and creativity.",
-//   },
-//   {
-//     id: 4,
-//     image: "/download.jpeg",
-//     title: "The Future of AI in Web Development",
-//     author: "Razib Dash",
-//     date: "2024-07-10",
-//     description:
-//       "Artificial Intelligence is reshaping web development. Explore how AI tools enhance productivity and creativity.",
-//   },
-// ];
-
 export default function BlogSection() {
   const { blogs, loading, fetchBlogs } = useBlog();
   console.log(blogs);
@@ -124,7 +85,7 @@ export default function BlogSection() {
                   <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
                   <p className="text-sm text-gray-400 mb-4">
                     By <span className="text-pink-400">{blog.author}</span> on{" "}
-                    {blog.date}
+                    {blog.date.slice(0, 10)}
                   </p>
                   <p className="text-gray-300 mb-6">
                     {blog.description.slice(0, 100)}...

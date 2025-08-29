@@ -5,8 +5,7 @@ import { useProjects } from "../../hook/allData";
 import { useEffect } from "react";
 
 export default function Projects() {
-  const { projects, fetchProjects, fetchProjectById, loading, error } =
-    useProjects();
+  const { projects, fetchProjects, loading, error } = useProjects();
   // Show only 3 projects
   useEffect(() => {
     fetchProjects();
@@ -50,7 +49,9 @@ export default function Projects() {
                   {/* Title */}
                   <h3 className="text-xl font-semibold">{project.title}</h3>
                   {/* Description */}
-                  <p className="text-gray-300 text-sm">{project.description}</p>
+                  <p className="text-gray-300 text-sm">
+                    {project.description.slice(0, 100)}...
+                  </p>
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mt-2">
                     {project.tech.map((tech, i) => (

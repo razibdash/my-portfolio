@@ -99,6 +99,14 @@ export default function Footer() {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link
+                to="/admin-login"
+                className="hover:text-pink-400 transition"
+              >
+                login
+              </Link>
+            </li>
           </ul>
         </div>
 

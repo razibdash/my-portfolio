@@ -203,13 +203,15 @@ export default function AddProject() {
                 <td className="px-6 py-4 font-medium text-gray-700">
                   {proj.title}
                 </td>
-                <td className="px-6 py-4 text-gray-500">{proj.description}</td>
+                <td className="px-6 py-4 text-gray-500">
+                  {proj.description.slice(0, 100)}...
+                </td>
                 <td className="px-6 py-4 text-gray-500">
                   {proj.tech.join(", ")}
                 </td>
                 <td className="px-6 py-4">
                   <a
-                    href={proj.link}
+                    href={proj.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:underline"
@@ -219,7 +221,7 @@ export default function AddProject() {
                 </td>
                 <td className="px-6 py-4">
                   <a
-                    href={proj.link}
+                    href={proj.liveDemoLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:underline"
@@ -235,7 +237,7 @@ export default function AddProject() {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(proj.id)}
+                    onClick={() => handleDelete(proj._id)}
                     className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
                   >
                     Delete

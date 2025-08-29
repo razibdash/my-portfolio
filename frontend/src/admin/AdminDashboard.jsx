@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   LayoutDashboard,
   BookOpen,
@@ -8,6 +8,7 @@ import {
   MessageSquare,
   Menu,
   X,
+  LogOut,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import DashboardHome from "./DashboardHome";
@@ -16,17 +17,15 @@ import AddCertificate from "./AddCertificate";
 import AddProject from "./AddProject";
 import AddBlog from "./AddBlog";
 import ShowMessages from "./ShowMessages";
-
-// Dummy Components for Pages
-// const Skills = () => <div className="p-6">⚡ Manage Skills</div>;
-// const Certificates = () => <div className="p-6">🏆 Manage Certificates</div>;
-// const Blog = () => <div className="p-6">📝 Manage Blog Posts</div>;
-// const Projects = () => <div className="p-6">💻 Manage Projects</div>;
-// const Messages = () => <div className="p-6">📨 View Messages</div>;
+import { AdminAuthContext } from "../context/AdminAuthContext";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { logout } = useContext(AdminAuthContext);
+  const handleLogout = () => {
+    logout();
+  };
 
   const menuItems = [
     {
@@ -95,6 +94,16 @@ export default function AdminDashboard() {
               {item.label}
             </button>
           ))}
+          {
+            //logout
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg transition hover:bg-white/10"
+            >
+              <LogOut size={20} />
+              Logout
+            </button>
+          }
         </nav>
       </motion.aside>
 

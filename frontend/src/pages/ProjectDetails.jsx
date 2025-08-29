@@ -10,7 +10,7 @@ export default function ProjectDetails() {
   useEffect(() => {
     fetchProjectById(id);
   }, []);
-  console.log(project);
+  console.log(project.githubLink);
 
   if (!project && !loading) {
     return (
@@ -82,7 +82,7 @@ export default function ProjectDetails() {
               className="flex flex-wrap gap-6 mt-8"
             >
               <NavLink
-                to={project.liveLink}
+                to={project.liveDemoLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-5 py-2  lg:px-6 lg:py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-pink-500/50 transition"
@@ -90,7 +90,7 @@ export default function ProjectDetails() {
                 Live Demo
               </NavLink>
               <NavLink
-                href={project.github}
+                to={project.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-5 py-2 lg:px-6 lg:py-3 bg-gray-800/70 text-white rounded-xl shadow-lg hover:shadow-gray-500/50 transition"

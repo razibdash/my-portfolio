@@ -61,7 +61,7 @@ export default function Projects() {
                       <h3 className="text-xl font-semibold">{project.title}</h3>
                       {/* Description */}
                       <p className="text-gray-300 text-sm">
-                        {project.description}
+                        {project.description.slice(0, 100)}...
                       </p>
                       {/* Tech Stack */}
                       <div className="flex flex-wrap gap-2 mt-2">
