@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function BlogSection() {
   const { blogs, loading, fetchBlogs } = useBlog();
-  console.log(blogs);
+
   useEffect(() => {
     fetchBlogs();
   }, []);

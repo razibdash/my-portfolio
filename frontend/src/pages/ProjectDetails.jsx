@@ -10,7 +10,6 @@ export default function ProjectDetails() {
   useEffect(() => {
     fetchProjectById(id);
   }, []);
-  console.log(project.githubLink);
 
   if (!project && !loading) {
     return (
